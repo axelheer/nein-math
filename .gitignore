@@ -1,0 +1,14 @@
+# User
+*.suo
+*.user
+
+# Build
+bin/
+obj/
+
+# Test
+TestResults/
+
+# NuGet
+packages/*
+!packages/repositories.config

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Div</Word>
+      <Word>Gcd</Word>
+      <Word>Lcm</Word>
+      <Word>Rem</Word>
+      <Word>Sgn</Word>
+      <Word>Inv</Word>
+    </Recognized>
+  </Words>
+</Dictionary>
