@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Numerics;
+using System.Threading;
 
 namespace NeinMath.Benchmark
 {
@@ -11,6 +12,7 @@ namespace NeinMath.Benchmark
 
         public static void Main(string[] args)
         {
+            SpeedBoost();
             SanityCheck();
 
             ParseOp(args);
@@ -55,6 +57,8 @@ namespace NeinMath.Benchmark
                     break;
 
                 case "modpow":
+                    Benchmark.RunCount = 5;
+                    Benchmark.ValCount = 1;
                     Benchmark.Run(bits, bits, bits,
                         (a, b, c) => BigInteger.ModPow(a, b, c),
                         (a, b, c) => a.ModPow(b, c));
@@ -80,6 +84,14 @@ namespace NeinMath.Benchmark
             }
 
             Console.WriteLine("Length: {0} bits", bits);
+        }
+
+        private static void SpeedBoost()
+        {
+#if !DEBUG
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
+#endif
         }
 
         private static void SanityCheck()

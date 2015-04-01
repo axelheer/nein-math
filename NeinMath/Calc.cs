@@ -268,14 +268,14 @@
             // first operation
             var digit = (long)left[0] - right;
             bits[0] = (uint)digit;
-            var carry = digit >> 63;
+            var carry = digit >> 32;
 
             // substracts the bits
             for (var i = 1; i < leftLength; i++)
             {
                 digit = left[i] + carry;
                 bits[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
 
             return bits;
@@ -292,13 +292,13 @@
             {
                 var digit = (left[i] + carry) - right[i];
                 bits[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
             for (var i = rightLength; i < leftLength; i++)
             {
                 var digit = left[i] + carry;
                 bits[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
 
             return bits;
@@ -314,13 +314,13 @@
             {
                 var digit = (left[i] + carry) - right[i];
                 left[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
             for (var i = rightLength; i < leftLength; i++)
             {
                 var digit = left[i] + carry;
                 left[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
         }
 
@@ -335,13 +335,13 @@
             {
                 var digit = (left[i] + carry) - right[i - rightOffset];
                 left[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
             for (var i = rightLength + rightOffset; i < leftLength; i++)
             {
                 var digit = left[i] + carry;
                 left[i] = (uint)digit;
-                carry = digit >> 63;
+                carry = digit >> 32;
             }
         }
 
@@ -352,11 +352,11 @@
 
 #if DEBUG
 
-        public const int SquareThreshold = 128 / 32;
+        private const int SquareThreshold = 128 / 32;
 
 #else
 
-        public const int SquareThreshold = 4096 / 32;
+        private const int SquareThreshold = 2048 / 32;
 
 #endif
 
@@ -439,11 +439,11 @@
 
 #if DEBUG
 
-        public const int MultiplyThreshold = 128 / 32;
+        private const int MultiplyThreshold = 128 / 32;
 
 #else
 
-        public const int MultiplyThreshold = 2048 / 32;
+        private const int MultiplyThreshold = 1024 / 32;
 
 #endif
 

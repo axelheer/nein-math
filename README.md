@@ -17,15 +17,15 @@ Let's start with a simple comparison (time per 100 operations).
 
 | Operation | Length (bits) | BigInteger (.NET) | Integer (NeinMath) |
 |:----------|--------------:|------------------:|-------------------:|
-| add (+)   |     4,194,304 |             51 ms |              43 ms |
-| sub (-)   |     4,194,304 |             52 ms |              63 ms |
-| mul (*)   |        65,536 |          1,387 ms |             447 ms |
-| squ (^2)  |        65,536 |          1,391 ms |             371 ms |
-| div (/)   |        65,536 |          1,023 ms |             888 ms |
-| mod (%)   |        65,536 |          1,022 ms |             884 ms |
-| modpow    |        16,384 |      8,422,300 ms |       2,600,700 ms |
+| add (+)   |     4,194,304 |             40 ms |              17 ms |
+| sub (-)   |     4,194,304 |             43 ms |              18 ms |
+| mul (*)   |        65,536 |            980 ms |             139 ms |
+| squ (^2)  |        65,536 |            980 ms |              96 ms |
+| div (/)   |        65,536 |            555 ms |             231 ms |
+| mod (%)   |        65,536 |            555 ms |             231 ms |
+| modpow    |        16,384 |      5,124,600 ms |         758,400 ms |
 
-*Note:* not using pointer arithmetic seems to be a huge impediment. Maybe the future compiler platform does the trick?
+*Note:* ensure you're running a 64-bit process. Handling this with just 32-bits is a huge impediment for both, `BigInteger` and `Integer`.
 
 *Note:* these results are from "my machine". A basic (very basic) benchmark utility is included to verify / disprove them.
 

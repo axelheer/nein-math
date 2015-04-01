@@ -6,8 +6,8 @@ namespace NeinMath.Benchmark
 {
     public static class Benchmark
     {
-        private const int RunCount = 10;
-        private const int ValCount = 100;
+        public static int RunCount = 10;
+        public static int ValCount = 100;
 
         private static readonly Random random = new Random(1138);
 
