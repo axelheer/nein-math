@@ -175,11 +175,11 @@ namespace NeinMath
             if (modulus < 1)
                 throw new ArgumentOutOfRangeException("modulus");
 
-            if (Abs(value) >= modulus)
-                value = value % modulus;
-
             var R = BeginBarrett(modulus);
             var mu = R / modulus;
+
+            if (Abs(value) > R)
+                value = value % modulus;
 
             var v = new Integer[256];
             v[0] = 1;
