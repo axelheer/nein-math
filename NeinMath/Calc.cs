@@ -235,25 +235,46 @@
         }
 
         public static void AddSelf(uint[] left, int leftLength,
-                                   uint[] right, int rightLength,
-                                   int rightOffset)
+                                   uint[] right, int rightLength)
         {
-            var fullRightLength = rightOffset + rightLength;
-            if (fullRightLength > leftLength)
-                fullRightLength = leftLength;
             var carry = 0L;
 
             // adds the bits
-            for (var i = rightOffset; i < fullRightLength; i++)
+            for (var i = 0; i < rightLength; i++)
+            {
+                var digit = (left[i] + carry) + right[i];
+                left[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+            for (var i = rightLength; carry != 0 && i < leftLength; i++)
+            {
+                var digit = left[i] + carry;
+                left[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+        }
+
+        public static void AddSelf(uint[] left, int leftLength,
+                                   uint[] right, int rightLength,
+                                   int rightOffset)
+        {
+            var bound = rightOffset + rightLength;
+            if (bound > leftLength)
+                bound = leftLength;
+            var carry = 0L;
+
+            // adds the bits
+            for (var i = rightOffset; i < bound; i++)
             {
                 var digit = (left[i] + carry) + right[i - rightOffset];
                 left[i] = (uint)digit;
                 carry = digit >> 32;
             }
-            if (fullRightLength < leftLength)
+            for (var i = bound; carry != 0 && i < leftLength; i++)
             {
-                var digit = left[fullRightLength] + carry;
-                left[fullRightLength] = (uint)digit;
+                var digit = left[i] + carry;
+                left[i] = (uint)digit;
+                carry = digit >> 32;
             }
         }
 
@@ -316,7 +337,7 @@
                 left[i] = (uint)digit;
                 carry = digit >> 32;
             }
-            for (var i = rightLength; i < leftLength; i++)
+            for (var i = rightLength; carry != 0 && i < leftLength; i++)
             {
                 var digit = left[i] + carry;
                 left[i] = (uint)digit;
@@ -328,16 +349,19 @@
                                         uint[] right, int rightLength,
                                         int rightOffset)
         {
+            var bound = rightOffset + rightLength;
+            if (bound > leftLength)
+                bound = leftLength;
             var carry = 0L;
 
             // substract the bits
-            for (var i = rightOffset; i < rightLength + rightOffset; i++)
+            for (var i = rightOffset; i < bound; i++)
             {
                 var digit = (left[i] + carry) - right[i - rightOffset];
                 left[i] = (uint)digit;
                 carry = digit >> 32;
             }
-            for (var i = rightLength + rightOffset; i < leftLength; i++)
+            for (var i = bound; carry != 0 && i < leftLength; i++)
             {
                 var digit = left[i] + carry;
                 left[i] = (uint)digit;
@@ -405,7 +429,7 @@
                 SubtractSelf(p3, p3.Length, p2, p2.Length);
 
                 // merge the result
-                AddSelf(bits, bits.Length, p2, p2.Length, 0);
+                AddSelf(bits, bits.Length, p2, p2.Length);
                 AddSelf(bits, bits.Length, p3, p3.Length, n);
                 AddSelf(bits, bits.Length, p1, p1.Length, n * 2);
             }
@@ -475,7 +499,7 @@
             else
             {
                 // divide & conquer
-                var n = (((leftLength > rightLength)
+                var n = ((leftLength > rightLength
                     ? leftLength : rightLength) + 1) / 2;
 
                 var leftLowOffset = leftOffset;
@@ -501,7 +525,7 @@
                 SubtractSelf(p3, p3.Length, p2, p2.Length);
 
                 // merge the result
-                AddSelf(bits, bits.Length, p2, p2.Length, 0);
+                AddSelf(bits, bits.Length, p2, p2.Length);
                 AddSelf(bits, bits.Length, p3, p3.Length, n);
                 AddSelf(bits, bits.Length, p1, p1.Length, n * 2);
             }
