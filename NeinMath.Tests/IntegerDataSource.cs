@@ -10,6 +10,60 @@ namespace NeinMath.Tests
         // don't make it too random...
         private readonly Random random = new Random(1138);
 
+        protected double[] Floats()
+        {
+            return Floats(_ => true, x => x);
+        }
+
+        protected double[] Floats(Func<double, bool> predicate)
+        {
+            return Floats(predicate, x => x);
+        }
+
+        protected double[] Floats(Func<double, double> selector)
+        {
+            return Floats(_ => true, selector);
+        }
+
+        protected double[] Floats(Func<double, bool> predicate,
+                                  Func<double, double> selector)
+        {
+            // mix some common values...
+            // ...with something random!
+            var result = new double[testCount];
+            for (var i = 0; i < testCount; i++)
+            {
+                var value = default(double);
+                do
+                {
+                    switch (random.Next() % 8)
+                    {
+                        case 0:
+                            value = random.Next(-3, 4);
+                            break;
+
+                        case 1:
+                            value = new double[]
+                            {
+                                double.PositiveInfinity,
+                                double.NegativeInfinity,
+                                double.MinValue,
+                                double.MaxValue,
+                                double.NaN
+                            }[random.Next(5)];
+                            break;
+
+                        default:
+                            value = random.NextDouble();
+                            break;
+                    }
+                }
+                while (!predicate(value));
+                result[i] = selector(value);
+            }
+            return result;
+        }
+
         protected int[] Integers()
         {
             return Integers(_ => true, x => x);
@@ -42,13 +96,16 @@ namespace NeinMath.Tests
                             value = random.Next(-3, 4);
                             break;
 
+                        case 1:
+                            value = new int[]
+                            {
+                                int.MinValue,
+                                int.MaxValue
+                            }[random.Next(2)];
+                            break;
+
                         default:
-                            var bytes = new byte[4];
-                            random.NextBytes(bytes);
-                            value = bytes[0]
-                                | (bytes[1] << 8)
-                                | (bytes[2] << 16)
-                                | (bytes[3] << 24);
+                            value = random.Next();
                             break;
                     }
                 }

@@ -34,7 +34,7 @@ namespace NeinMath
         /// </returns>
         public static implicit operator Integer(int value)
         {
-            return new Integer(new[] { (uint)Math.Abs(value) }, 1, value < 0);
+            return new Integer(new[] { Bits.Abs(value) }, 1, value < 0);
         }
 
         /// <summary>
@@ -521,7 +521,7 @@ namespace NeinMath
             if (!sign && other < 0)
                 return 1;
 
-            var result = Bits.Compare(bits, length, (uint)Math.Abs(other));
+            var result = Bits.Compare(bits, length, Bits.Abs(other));
             if (sign)
                 result *= -1;
 
@@ -714,7 +714,7 @@ namespace NeinMath
             if (sign != (right < 0))
                 return Negate().Subtract(right).Negate();
 
-            var result = Calc.Add(bits, length, (uint)Math.Abs(right));
+            var result = Calc.Add(bits, length, Bits.Abs(right));
             return new Integer(result, result.Length, sign);
         }
 
@@ -810,11 +810,11 @@ namespace NeinMath
                 return ((Integer)right).Negate();
             if (sign != (right < 0))
                 return Negate().Add(right).Negate();
-            if (length == 1 && bits[0] < (uint)Math.Abs(right))
-                return new Integer(new uint[] { (uint)Math.Abs(right)
+            if (length == 1 && bits[0] < Bits.Abs(right))
+                return new Integer(new uint[] { Bits.Abs(right)
                     - bits[0] }, 1, !sign);
 
-            var result = Calc.Subtract(bits, length, (uint)Math.Abs(right));
+            var result = Calc.Subtract(bits, length, Bits.Abs(right));
             return new Integer(result, result.Length, sign);
         }
 
@@ -869,7 +869,7 @@ namespace NeinMath
         /// <returns>The product of the Integer and right.</returns>
         public Integer Multiply(int right)
         {
-            var result = Calc.Multiply(bits, length, (uint)Math.Abs(right));
+            var result = Calc.Multiply(bits, length, Bits.Abs(right));
             return new Integer(result, result.Length, sign ^ (right < 0));
         }
 
@@ -919,7 +919,7 @@ namespace NeinMath
                 throw new DivideByZeroException();
 
             var remainder = default(uint);
-            var result = Calc.Divide(bits, length, (uint)Math.Abs(right),
+            var result = Calc.Divide(bits, length, Bits.Abs(right),
                 out remainder);
             return new Integer(result, result.Length, sign ^ (right < 0));
         }
@@ -975,7 +975,7 @@ namespace NeinMath
             if (right == 0)
                 throw new DivideByZeroException();
 
-            var result = Calc.Remainder(bits, length, (uint)Math.Abs(right));
+            var result = Calc.Remainder(bits, length, Bits.Abs(right));
             return sign
                 ? -1 * (int)result
                 : (int)result;

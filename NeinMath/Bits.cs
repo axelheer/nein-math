@@ -156,5 +156,15 @@
 
             return result;
         }
+
+        public static uint Abs(int value)
+        {
+            var result = (uint)value;
+
+            if ((result & 0x80000000) != 0)
+                result = ~result + 1;
+
+            return result;
+        }
     }
 }
