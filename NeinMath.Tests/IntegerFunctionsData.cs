@@ -77,6 +77,15 @@ namespace NeinMath.Tests
             return data;
         }
 
+        public TheoryData<Integer, double, double> Log()
+        {
+            var data = new TheoryData<Integer, double, double>();
+            foreach (var i in Items(BigIntegers(), Floats()))
+                data.Add(ToInteger(i.Item1), i.Item2,
+                    BigInteger.Log(i.Item1, i.Item2));
+            return data;
+        }
+
         public TheoryData<Integer, Integer, Integer, Integer> ModPow()
         {
             var data = new TheoryData<Integer, Integer, Integer, Integer>();

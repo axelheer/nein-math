@@ -67,9 +67,9 @@ namespace NeinMath.Tests
 
             if (result != null)
             {
-                var check = (((value * result) % modulus) + modulus) % modulus;
+                var check = (value * result) % modulus;
 
-                Assert.Equal(1, check);
+                Assert.True(check == 1 || check + modulus == 1);
             }
         }
 
@@ -80,6 +80,15 @@ namespace NeinMath.Tests
             var actual = value.Pow(power);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [IntegerData]
+        public void Log(Integer value, double baseValue, double expected)
+        {
+            var actual = value.Log(baseValue);
+
+            Assert.Equal(expected, actual, 8);
         }
 
         [Theory]

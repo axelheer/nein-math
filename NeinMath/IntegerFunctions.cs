@@ -86,11 +86,11 @@ namespace NeinMath
         }
 
         /// <summary>
-        /// Performs modulus inversion on a number.
+        /// Performs modulus inversion on an Integer.
         /// </summary>
-        /// <param name="value">The number to inverse.</param>
-        /// <param name="modulus">The number by which to divide.</param>
-        /// <returns>The result of inversing the number; if any.</returns>
+        /// <param name="value">The Integer to inverse.</param>
+        /// <param name="modulus">The Integer by which to divide.</param>
+        /// <returns>The result of inversing the Integer; if any.</returns>
         public static Integer? Inv(this Integer value, Integer modulus)
         {
             if (modulus < 1)
@@ -131,11 +131,11 @@ namespace NeinMath
         /// Raises an Integer to the power of a specified value.
         /// </summary>
         /// <param name="value">
-        /// The number to raise to the exponent power.
+        /// The Integer to raise to the exponent power.
         /// </param>
-        /// <param name="power">The exponent to raise the number by.</param>
+        /// <param name="power">The exponent to raise the Integer by.</param>
         /// <returns>
-        /// The result of raising the number to the exponent power.
+        /// The result of raising the Integer to the exponent power.
         /// </returns>
         public static Integer Pow(this Integer value, int power)
         {
@@ -156,16 +156,60 @@ namespace NeinMath
         }
 
         /// <summary>
-        /// Performs modulus division on a number raised to the power of
-        /// another number.
+        /// Returns the logarithm of a specified Integer in a specified base.
         /// </summary>
         /// <param name="value">
-        /// The number to raise to the exponent power.
+        /// The Integer whose logarithm is to be found.
         /// </param>
-        /// <param name="power">The exponent to raise the number by.</param>
-        /// <param name="modulus">The number by which to divide.</param>
+        /// <param name="baseValue">The base of the logarithm.</param>
+        /// <returns>The result of finding the logarithm.</returns>
+        public static double Log(this Integer value, double baseValue = Math.E)
+        {
+            if (value < 0)
+                return double.NaN;
+            if (baseValue < 0)
+                return double.NaN;
+
+            if (baseValue == 0)
+                return value != 1 ? double.NaN : 0;
+            if (baseValue == double.PositiveInfinity)
+                return value != 1 ? double.NaN : 0;
+            if (baseValue == double.NaN)
+                return double.NaN;
+            if (baseValue == 1)
+                return double.NaN;
+
+            if (value == 0)
+                return baseValue < 1
+                    ? double.PositiveInfinity
+                    : double.NegativeInfinity;
+
+            // extract most significant bits
+            var h = (ulong)value.bits[value.length - 1];
+            var m = (ulong)(value.length > 1
+                ? value.bits[value.length - 2] : 0);
+            var l = (ulong)(value.length > 2
+                ? value.bits[value.length - 3] : 0);
+
+            // combine with bit count (log2)
+            var z = Bits.LeadingZeros((uint)h);
+            var y = value.length * 32 - z - 1.0;
+            var x = (h << 32 + z) | (m << z) | (l >> 32 - z);
+
+            return (y + Math.Log(x, 2) - 63) / Math.Log(baseValue, 2);
+        }
+
+        /// <summary>
+        /// Performs modulus division on an Integer raised to the power of
+        /// another Integer.
+        /// </summary>
+        /// <param name="value">
+        /// The Integer to raise to the exponent power.
+        /// </param>
+        /// <param name="power">The exponent to raise the Integer by.</param>
+        /// <param name="modulus">The Integer by which to divide.</param>
         /// <returns>
-        /// The result of raising the number to the exponent power.
+        /// The result of raising the Integer to the exponent power.
         /// </returns>
         public static Integer ModPow(this Integer value, Integer power,
                                      Integer modulus)
