@@ -172,9 +172,9 @@ namespace NeinMath
 
             if (baseValue == 0)
                 return value != 1 ? double.NaN : 0;
-            if (baseValue == double.PositiveInfinity)
+            if (double.IsPositiveInfinity(baseValue))
                 return value != 1 ? double.NaN : 0;
-            if (baseValue == double.NaN)
+            if (double.IsNaN(baseValue))
                 return double.NaN;
             if (baseValue == 1)
                 return double.NaN;
@@ -219,24 +219,20 @@ namespace NeinMath
             if (modulus < 1)
                 throw new ArgumentOutOfRangeException("modulus");
 
-            var R = BeginBarrett(modulus);
-            var mu = R / modulus;
-
-            if (Abs(value) > R)
-                value = value % modulus;
+            var barrett = Barrett.Begin(modulus);
 
             var v = new Integer[256];
             v[0] = 1;
-            v[1] = Barrett(value, modulus, mu);
-            v[2] = Barrett(v[1] * v[1], modulus, mu);
+            v[1] = barrett.Reduce(value);
+            v[2] = barrett.Reduce(v[1] * v[1]);
 
             for (var j = 4; j < v.Length; j *= 2)
-                v[j] = Barrett(v[j / 2] * v[j / 2], modulus, mu);
+                v[j] = barrett.Reduce(v[j / 2] * v[j / 2]);
             for (var i = 3; i < v.Length; i += 2)
             {
-                v[i] = Barrett(v[i - 1] * v[1], modulus, mu);
+                v[i] = barrett.Reduce(v[i - 1] * v[1]);
                 for (var j = i * 2; j < v.Length; j *= 2)
-                    v[j] = Barrett(v[j / 2] * v[j / 2], modulus, mu);
+                    v[j] = barrett.Reduce(v[j / 2] * v[j / 2]);
             }
 
             var p = power.ToByteArray();
@@ -245,8 +241,8 @@ namespace NeinMath
             for (var i = p.Length - 2; i >= 0; i--)
             {
                 for (var j = 0; j < 8; j++)
-                    result = Barrett(result * result, modulus, mu);
-                result = Barrett(result * v[p[i]], modulus, mu);
+                    result = barrett.Reduce(result * result);
+                result = barrett.Reduce(result * v[p[i]]);
             }
 
             return result;
@@ -278,46 +274,6 @@ namespace NeinMath
                 right.bits, right.length, out remain);
             remainder = new Integer(remain, remain.Length, left.sign);
             return new Integer(result, result.Length, left.sign ^ right.sign);
-        }
-
-        private static Integer BeginBarrett(Integer modulus)
-        {
-            var bits = new uint[modulus.length * 2 + 1];
-            bits[bits.Length - 1] = 1;
-            return new Integer(bits, bits.Length, false);
-        }
-
-        private static Integer Barrett(Integer value, Integer modulus,
-                                       Integer mu)
-        {
-            var v = value.bits; var vl = value.length;
-            var m = modulus.bits; var ml = modulus.length;
-            var u = mu.bits; var ul = mu.length;
-
-            var l1 = vl - ml + 1;
-            var q1 = l1 > 0
-                ? Calc.Multiply(v, l1, ml - 1, u, ul, 0)
-                : new uint[] { };
-
-            var l2 = Bits.Length(q1, q1.Length) - ml - 1;
-            var q2 = l2 > 0
-                ? Calc.Multiply(q1, l2, ml + 1, m, ml, 0)
-                : new uint[] { };
-
-            var q = q2;
-            var ql = Bits.Length(q, q.Length);
-
-            var r = Calc.Subtract(v, vl > ml + 1 ? ml + 1 : vl,
-                                  q, ql > ml + 1 ? ml + 1 : ql);
-            var rl = Bits.Length(r, r.Length);
-
-            while (Bits.Compare(r, rl, m, ml) >= 0)
-            {
-                Calc.SubtractSelf(r, rl, m, ml);
-                rl = Bits.Length(r, r.Length);
-            }
-
-            return new Integer(r, rl, value.sign);
         }
     }
 }

@@ -50,6 +50,7 @@
     <None Include="Properties\CustomRuleset.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barrett.cs" />
     <Compile Include="Bits.cs" />
     <Compile Include="Calc.cs" />
     <Compile Include="FractionConverter.cs" />
