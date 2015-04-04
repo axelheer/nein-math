@@ -11,37 +11,37 @@ namespace NeinMath.Benchmark
 
         private static readonly Random random = new Random(1138);
 
-        public static void Run(
+        public static void Run<T, U>(
             int valueSize,
-            Func<BigInteger, BigInteger> one,
-            Func<Integer, Integer> two)
+            Func<BigInteger, T> one,
+            Func<Integer, U> two)
         {
-            Run<BigInteger>(valueSize, BigInteger, one);
-            Run<Integer>(valueSize, Integer, two);
+            Run<BigInteger, T>(valueSize, BigInteger, one);
+            Run<Integer, U>(valueSize, Integer, two);
         }
 
-        public static void Run(
+        public static void Run<T, U>(
             int leftSize, int rightSize,
-            Func<BigInteger, BigInteger, BigInteger> one,
-            Func<Integer, Integer, Integer> two)
+            Func<BigInteger, BigInteger, T> one,
+            Func<Integer, Integer, U> two)
         {
-            Run<BigInteger>(leftSize, rightSize, BigInteger, one);
-            Run<Integer>(leftSize, rightSize, Integer, two);
+            Run<BigInteger, T>(leftSize, rightSize, BigInteger, one);
+            Run<Integer, U>(leftSize, rightSize, Integer, two);
         }
 
-        public static void Run(
+        public static void Run<T, U>(
             int leftSize, int rightSize, int otherSize,
-            Func<BigInteger, BigInteger, BigInteger, BigInteger> one,
-            Func<Integer, Integer, Integer, Integer> two)
+            Func<BigInteger, BigInteger, BigInteger, T> one,
+            Func<Integer, Integer, Integer, U> two)
         {
-            Run<BigInteger>(leftSize, rightSize, otherSize, BigInteger, one);
-            Run<Integer>(leftSize, rightSize, otherSize, Integer, two);
+            Run<BigInteger, T>(leftSize, rightSize, otherSize, BigInteger, one);
+            Run<Integer, U>(leftSize, rightSize, otherSize, Integer, two);
         }
 
-        private static void Run<T>(
+        private static void Run<T, U>(
             int valueSize,
             Func<int, T> create,
-            Func<T, T> run)
+            Func<T, U> run)
         {
             var value = new T[ValCount];
 
@@ -71,10 +71,10 @@ namespace NeinMath.Benchmark
             Console.WriteLine("{0} ms / {1} ops", result, ValCount);
         }
 
-        private static void Run<T>(
+        private static void Run<T, U>(
             int leftSize, int rightSize,
             Func<int, T> create,
-            Func<T, T, T> run)
+            Func<T, T, U> run)
         {
             var left = new T[ValCount];
             var right = new T[ValCount];
@@ -106,10 +106,10 @@ namespace NeinMath.Benchmark
             Console.WriteLine("{0} ms / {1} ops", result, ValCount);
         }
 
-        private static void Run<T>(
+        private static void Run<T, U>(
             int leftSize, int rightSize, int otherSize,
             Func<int, T> create,
-            Func<T, T, T, T> run)
+            Func<T, T, T, U> run)
         {
             var left = new T[ValCount];
             var right = new T[ValCount];

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Numerics;
-using System.Threading;
 
 namespace NeinMath.Benchmark
 {
@@ -17,6 +15,8 @@ namespace NeinMath.Benchmark
 
             ParseOp(args);
             ParseBits(args);
+            ParseRunCount(args);
+            ParseValCount(args);
 
             switch (op)
             {
@@ -56,9 +56,19 @@ namespace NeinMath.Benchmark
                         (a, b) => a % b);
                     break;
 
+                case "gcd":
+                    Benchmark.Run(bits, bits,
+                        (a, b) => BigInteger.GreatestCommonDivisor(a, b),
+                        (a, b) => a.Gcd(b));
+                    break;
+
+                case "log":
+                    Benchmark.Run(bits,
+                        a => BigInteger.Log(a),
+                        a => a.Log());
+                    break;
+
                 case "modpow":
-                    Benchmark.RunCount = 5;
-                    Benchmark.ValCount = 1;
                     Benchmark.Run(bits, bits, bits,
                         (a, b, c) => BigInteger.ModPow(a, b, c),
                         (a, b, c) => a.ModPow(b, c));
@@ -76,21 +86,49 @@ namespace NeinMath.Benchmark
 
         private static void ParseBits(string[] args)
         {
-            if (args.Length > 1)
+            var a = ParseIntArg(args, 1);
+            if (a.HasValue)
+                bits = Math.Max(128, a.Value);
+
+            Console.WriteLine("# of bits: {0}", bits);
+        }
+
+        private static void ParseRunCount(string[] args)
+        {
+            var a = ParseIntArg(args, 2);
+            if (a.HasValue)
+                Benchmark.RunCount = Math.Max(4, a.Value);
+
+            Console.WriteLine("# of runs: {0}", Benchmark.RunCount);
+        }
+
+        private static void ParseValCount(string[] args)
+        {
+            var a = ParseIntArg(args, 3);
+            if (a.HasValue)
+                Benchmark.ValCount = Math.Max(1, a.Value);
+
+            Console.WriteLine("# of vals: {0}", Benchmark.ValCount);
+        }
+
+        private static int? ParseIntArg(string[] args, int index)
+        {
+            if (args.Length > index)
             {
                 var a = 0;
-                if (int.TryParse(args[1], out a))
-                    bits = Math.Max(128, a);
+                if (int.TryParse(args[index], out a))
+                    return a;
             }
-
-            Console.WriteLine("Length: {0} bits", bits);
+            return null;
         }
 
         private static void SpeedBoost()
         {
 #if !DEBUG
-            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            Thread.CurrentThread.Priority = ThreadPriority.Highest;
+            System.Diagnostics.Process.GetCurrentProcess().PriorityClass
+                = System.Diagnostics.ProcessPriorityClass.High;
+            System.Threading.Thread.CurrentThread.Priority
+                = System.Threading.ThreadPriority.Highest;
 #endif
         }
 
@@ -101,7 +139,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("...so don't take the results for real.");
             Console.WriteLine();
 #endif
-            if (Debugger.IsAttached)
+            if (System.Diagnostics.Debugger.IsAttached)
             {
                 Console.WriteLine("WARNING: you're debugging this junk...");
                 Console.WriteLine("...so don't take the results for real.");
