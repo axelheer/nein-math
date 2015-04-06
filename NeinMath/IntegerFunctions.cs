@@ -64,14 +64,9 @@ namespace NeinMath
             var a = Abs(left);
             var b = Abs(right);
 
-            while (b != 0)
-            {
-                var c = a % b;
-                a = b;
-                b = c;
-            }
-
-            return a;
+            if (a < b)
+                return Lehmer.Gcd(b, a);
+            return Lehmer.Gcd(a, b);
         }
 
         /// <summary>
@@ -91,7 +86,7 @@ namespace NeinMath
         /// <param name="value">The Integer to inverse.</param>
         /// <param name="modulus">The Integer by which to divide.</param>
         /// <returns>The result of inversing the Integer; if any.</returns>
-        public static Integer? Inv(this Integer value, Integer modulus)
+        public static Integer Inv(this Integer value, Integer modulus)
         {
             if (modulus < 1)
                 throw new ArgumentOutOfRangeException("modulus");
@@ -100,31 +95,7 @@ namespace NeinMath
                 value = value % modulus;
             if (value < 0)
                 value = value + modulus;
-            if (value == 0)
-                return null;
-
-            var a = modulus;
-            var b = value;
-
-            // Integer x2 = 1, x1 = 0;
-            Integer y2 = 0, y1 = 1;
-
-            while (b != 0)
-            {
-                var q = a / b;
-                var r = a - q * b;
-                // var x = x2 - q * x1;
-                var y = y2 - q * y1;
-
-                a = b; b = r;
-                // x2 = x1; x1 = x;
-                y2 = y1; y1 = y;
-            }
-
-            if (a != 1)
-                return null;
-
-            return y2;
+            return Lehmer.Inv(modulus, value);
         }
 
         /// <summary>

@@ -59,6 +59,7 @@
     <Compile Include="IntegerFunctions.cs" />
     <Compile Include="Fraction.cs" />
     <Compile Include="Integer.cs" />
+    <Compile Include="Lehmer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NeinMath.nuspec" />

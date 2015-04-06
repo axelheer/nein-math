@@ -64,12 +64,19 @@ namespace NeinMath.Tests
         public void Inv(Integer value, Integer modulus)
         {
             var result = value.Inv(modulus);
+            var common = value.Gcd(modulus);
 
-            if (result != null)
+            if (value % modulus != 0 && common == 1)
             {
                 var check = (value * result) % modulus;
+                if (check < 0)
+                    check = check + modulus;
 
-                Assert.True(check == 1 || check + modulus == 1);
+                Assert.Equal(1, check);
+            }
+            else
+            {
+                Assert.Equal(0, result);
             }
         }
 

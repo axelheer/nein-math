@@ -62,6 +62,12 @@ namespace NeinMath.Benchmark
                         (a, b) => a.Gcd(b));
                     break;
 
+                case "inv":
+                    Benchmark.Run(bits, bits,
+                        (a, b) => 0, // :'(
+                        (a, b) => a.Inv(b));
+                    break;
+
                 case "log":
                     Benchmark.Run(bits,
                         a => BigInteger.Log(a),
