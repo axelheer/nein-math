@@ -157,6 +157,16 @@
             return result;
         }
 
+        public static ulong Abs(long value)
+        {
+            var result = (ulong)value;
+
+            if ((result & 0x8000000000000000) != 0)
+                result = ~result + 1;
+
+            return result;
+        }
+
         public static uint Abs(int value)
         {
             var result = (uint)value;

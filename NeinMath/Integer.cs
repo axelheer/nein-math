@@ -34,7 +34,26 @@ namespace NeinMath
         /// </returns>
         public static implicit operator Integer(int value)
         {
-            return new Integer(new[] { Bits.Abs(value) }, 1, value < 0);
+            var num = Bits.Abs(value);
+            var bits = new uint[] { num };
+
+            return new Integer(bits, 1, value < 0);
+        }
+
+        /// <summary>
+        /// Defines an implicit conversion of a signed 64-bit integer to an
+        /// Integer.
+        /// </summary>
+        /// <param name="value">The value to convert to an Integer.</param>
+        /// <returns>
+        /// An Integer that contains the value of the value parameter.
+        /// </returns>
+        public static implicit operator Integer(long value)
+        {
+            var num = Bits.Abs(value);
+            var bits = new uint[] { (uint)num, (uint)(num >> 32) };
+
+            return new Integer(bits, 2, value < 0);
         }
 
         /// <summary>
@@ -54,6 +73,31 @@ namespace NeinMath
                 ? (int)value.bits[0]
                 : 0;
             if (value.length > 1 || num < 0)
+                throw new OverflowException();
+            if (value.sign)
+                num *= -1;
+            return num;
+        }
+
+        /// <summary>
+        /// Defines an explicit conversion of an Integer to a signed 64-bit
+        /// integer.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a signed 64-bit integer.
+        /// </param>
+        /// <returns>
+        /// A signed 64-bit integer that contains the value of the value
+        /// parameter.
+        /// </returns>
+        public static explicit operator long(Integer value)
+        {
+            var num = value.length > 1
+                ? (long)(value.bits[0] | ((ulong)value.bits[1] << 32))
+                : value.length != 0
+                ? (long)value.bits[0]
+                : 0;
+            if (value.length > 2 || num < 0)
                 throw new OverflowException();
             if (value.sign)
                 num *= -1;
