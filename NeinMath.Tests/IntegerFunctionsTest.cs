@@ -61,9 +61,9 @@ namespace NeinMath.Tests
 
         [Theory]
         [IntegerData]
-        public void Inv(Integer value, Integer modulus)
+        public void ModInv(Integer value, Integer modulus)
         {
-            var result = value.Inv(modulus);
+            var result = value.ModInv(modulus);
             var common = value.Gcd(modulus);
 
             if (value % modulus != 0 && common == 1)

@@ -59,7 +59,7 @@ namespace NeinMath.Tests
             return data;
         }
 
-        public TheoryData<Integer, Integer> Inv()
+        public TheoryData<Integer, Integer> ModInv()
         {
             var data = new TheoryData<Integer, Integer>();
             foreach (var i in Items(BigIntegers(), BigIntegers(x => x != 0,

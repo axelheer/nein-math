@@ -25,7 +25,7 @@ Let's start with a simple comparison (time per 100 operations).
 | div (/)   |        65,536 |            555 ms |             231 ms |
 | mod (%)   |        65,536 |            555 ms |             231 ms |
 | gcd       |        65,536 |            729 ms |             533 ms |
-| inv       |        65,536 |               N/A |            1417 ms |
+| modinv       |        65,536 |               N/A |            1417 ms |
 | modpow    |        16,384 |      5,124,600 ms |         758,400 ms |
 
 *Note:* ensure you're running a 64-bit process. Handling this with just 32-bits is a huge impediment for both, `BigInteger` and `Integer`.

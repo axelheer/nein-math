@@ -86,7 +86,7 @@ namespace NeinMath
         /// <param name="value">The Integer to inverse.</param>
         /// <param name="modulus">The Integer by which to divide.</param>
         /// <returns>The result of inversing the Integer; if any.</returns>
-        public static Integer Inv(this Integer value, Integer modulus)
+        public static Integer ModInv(this Integer value, Integer modulus)
         {
             if (modulus < 1)
                 throw new ArgumentOutOfRangeException("modulus");
