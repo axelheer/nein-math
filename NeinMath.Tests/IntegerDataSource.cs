@@ -158,6 +158,13 @@ namespace NeinMath.Tests
                             value = new BigInteger(bytes);
                             break;
 
+                        case 2:
+                            length = random.Next(1, 100);
+                            bytes = new byte[length];
+                            bytes[bytes.Length - 1] = 1;
+                            value = new BigInteger(bytes);
+                            break;
+
                         default:
                             length = random.Next(1, 100);
                             bytes = new byte[length];

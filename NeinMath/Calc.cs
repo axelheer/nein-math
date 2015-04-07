@@ -595,20 +595,18 @@
                     ++bits[leftLength - rightLength];
                     SubtractSelf(left, leftLength,
                         right, rightLength, leftLength - rightLength);
-                    leftLength = Bits.Length(left, leftLength);
                 }
             }
-            while (leftLength >= rightLength && delta > 0);
+            while (delta > 0);
 
             // divides the rest of the bits
-            var i = leftLength - 1;
-            while (i >= rightLength)
+            for (var i = leftLength - 1; i >= rightLength; i--)
             {
                 // first guess for the current bit of the quotient
                 var digits = (left[i - 1] | ((ulong)left[i] << 32))
                     / right[rightLength - 1];
-                if ((digits & 0x100000000) != 0)
-                    digits = 0x100000000;
+                if (digits > 0xFFFFFFFF)
+                    digits = 0xFFFFFFFF;
 
                 // the guess may be a little bit to big
                 do
@@ -616,7 +614,7 @@
                     MultiplyDivisor(right, rightLength, digits, guess);
                     guessLength = guess[guess.Length - 1] == 0
                         ? guess.Length - 1 : guess.Length;
-                    delta = Bits.Compare(left, leftLength,
+                    delta = Bits.Compare(left, i + 1,
                         guess, guessLength, i - rightLength);
                     if (delta < 0)
                         --digits;
@@ -624,17 +622,13 @@
                 while (delta < 0);
 
                 // we have the bit!
-                SubtractSelf(left, leftLength,
+                SubtractSelf(left, i + 1,
                     guess, guessLength, i - rightLength);
-                leftLength = Bits.Length(left, leftLength);
                 bits[i - rightLength] = (uint)digits;
-                if (digits == 0x100000000)
-                    ++bits[i - rightLength + 1];
-                i = leftLength - 1;
             }
 
             // repair the cheated shift
-            remainder = Shift(left, leftLength, -1 * shifted, 0);
+            remainder = Shift(left, rightLength, -1 * shifted, 0);
 
             return bits;
         }
