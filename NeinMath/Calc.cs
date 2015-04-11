@@ -208,32 +208,6 @@
             return bits;
         }
 
-        public static uint[] Add(uint[] value,
-                                 int leftLength, int leftOffset,
-                                 int rightLength, int rightOffset)
-        {
-            var bits = new uint[leftLength + 1];
-            var carry = 0L;
-
-            // adds the bits
-            for (var i = 0; i < rightLength; i++)
-            {
-                var digit = (value[i + leftOffset] + carry)
-                    + value[i + rightOffset];
-                bits[i] = (uint)digit;
-                carry = digit >> 32;
-            }
-            for (var i = rightLength; i < leftLength; i++)
-            {
-                var digit = value[i + leftOffset] + carry;
-                bits[i] = (uint)digit;
-                carry = digit >> 32;
-            }
-            bits[bits.Length - 1] = (uint)carry;
-
-            return bits;
-        }
-
         public static void AddSelf(uint[] left, int leftLength,
                                    uint[] right, int rightLength)
         {
@@ -276,6 +250,32 @@
                 left[i] = (uint)digit;
                 carry = digit >> 32;
             }
+        }
+
+        private static uint[] AddFold(uint[] value,
+                                      int leftLength, int leftOffset,
+                                      int rightLength, int rightOffset)
+        {
+            var bits = new uint[leftLength + 1];
+            var carry = 0L;
+
+            // adds the bits
+            for (var i = 0; i < rightLength; i++)
+            {
+                var digit = (value[i + leftOffset] + carry)
+                    + value[i + rightOffset];
+                bits[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+            for (var i = rightLength; i < leftLength; i++)
+            {
+                var digit = value[i + leftOffset] + carry;
+                bits[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+            bits[bits.Length - 1] = (uint)carry;
+
+            return bits;
         }
 
         public static uint[] Subtract(uint[] left, int leftLength,
@@ -369,6 +369,37 @@
             }
         }
 
+        private static void SubtractCore(uint[] value,
+                                         int leftLength, int leftOffset,
+                                         int rightLength, int rightOffset,
+                                         uint[] core, int coreLength)
+        {
+            var carry = 0L;
+
+            // substract the bits
+            for (var i = 0; i < rightLength; i++)
+            {
+                var digit = (core[i] + carry)
+                    - value[i + leftOffset]
+                    - value[i + rightOffset];
+                core[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+            for (var i = rightLength; i < leftLength; i++)
+            {
+                var digit = (core[i] + carry)
+                    - value[i + leftOffset];
+                core[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+            for (var i = leftLength; carry != 0 && i < coreLength; i++)
+            {
+                var digit = core[i] + carry;
+                core[i] = (uint)digit;
+                carry = digit >> 32;
+            }
+        }
+
         public static uint[] Square(uint[] value, int valueLength)
         {
             return Square(value, valueLength, 0);
@@ -389,6 +420,15 @@
         {
             var bits = new uint[valueLength * 2];
 
+            Square(value, valueLength, valueOffset, bits, 0);
+
+            return bits;
+        }
+
+        private static void Square(uint[] value, int valueLength,
+                                   int valueOffset,
+                                   uint[] bits, int bitsOffset)
+        {
             if (valueLength < SquareThreshold)
             {
                 // squares the bits
@@ -397,44 +437,45 @@
                     var carry = 0UL;
                     for (var j = 0; j < i; j++)
                     {
-                        var digit1 = bits[i + j] + carry;
+                        var digit1 = bits[i + j + bitsOffset] + carry;
                         var digit2 = (ulong)value[j + valueOffset]
                             * (ulong)value[i + valueOffset];
-                        bits[i + j] = (uint)(digit1 + (digit2 << 1));
+                        bits[i + j + bitsOffset] =
+                            (uint)(digit1 + (digit2 << 1));
                         carry = (digit2 + (digit1 >> 1)) >> 31;
                     }
                     var digit = (ulong)value[i + valueOffset]
                         * (ulong)value[i + valueOffset] + carry;
-                    bits[i * 2] = (uint)digit;
-                    bits[i * 2 + 1] = (uint)(digit >> 32);
+                    bits[i * 2 + bitsOffset] = (uint)digit;
+                    bits[i * 2 + 1 + bitsOffset] = (uint)(digit >> 32);
                 }
             }
             else
             {
                 // divide & conquer
-                var n = (valueLength + 1) / 2;
+                var n = valueLength / 2;
 
                 var lowOffset = valueOffset;
+                var lowLength = n;
                 var highOffset = valueOffset + n;
+                var highLength = valueLength - n;
 
-                var lowLength = n; // n < valueLength (!)
-                var highLength = valueLength - lowLength;
+                Square(value, lowLength, lowOffset, bits, bitsOffset);
+                Square(value, highLength, highOffset, bits, bitsOffset + n * 2);
 
-                var p1 = Square(value, highLength, highOffset);
-                var p2 = Square(value, lowLength, lowOffset);
-                var p3 = Square(Add(value, lowLength, lowOffset,
-                    highLength, highOffset), lowLength + 1, 0);
+                var fold = AddFold(value, highLength, highOffset,
+                                          lowLength, lowOffset);
+                var foldLength = fold[fold.Length - 1] == 0
+                               ? fold.Length - 1 : fold.Length;
 
-                SubtractSelf(p3, p3.Length, p1, p1.Length);
-                SubtractSelf(p3, p3.Length, p2, p2.Length);
+                var core = Square(fold, foldLength);
+                SubtractCore(bits, highLength * 2, bitsOffset + n * 2,
+                                   lowLength * 2, bitsOffset,
+                                   core, core.Length);
 
                 // merge the result
-                AddSelf(bits, bits.Length, p2, p2.Length);
-                AddSelf(bits, bits.Length, p3, p3.Length, n);
-                AddSelf(bits, bits.Length, p1, p1.Length, n * 2);
+                AddSelf(bits, bits.Length, core, core.Length, bitsOffset + n);
             }
-
-            return bits;
         }
 
         public static uint[] Multiply(uint[] left, int leftLength,
@@ -478,6 +519,19 @@
         {
             var bits = new uint[leftLength + rightLength];
 
+            Multiply(left, leftLength, leftOffset,
+                     right, rightLength, rightOffset,
+                     bits, 0);
+
+            return bits;
+        }
+
+        private static void Multiply(uint[] left, int leftLength,
+                                     int leftOffset,
+                                     uint[] right, int rightLength,
+                                     int rightOffset,
+                                     uint[] bits, int bitsOffset)
+        {
             if (leftLength < MultiplyThreshold
                 || rightLength < MultiplyThreshold)
             {
@@ -487,50 +541,66 @@
                     var carry = 0UL;
                     for (var j = 0; j < leftLength; j++)
                     {
-                        var digits = bits[i + j] + carry
+                        var digits = bits[i + j + bitsOffset] + carry
                             + (ulong)left[j + leftOffset]
                             * (ulong)right[i + rightOffset];
-                        bits[i + j] = (uint)digits;
+                        bits[i + j + bitsOffset] = (uint)digits;
                         carry = digits >> 32;
                     }
-                    bits[i + leftLength] = (uint)carry;
+                    bits[i + leftLength + bitsOffset] = (uint)carry;
                 }
             }
             else
             {
                 // divide & conquer
-                var n = ((leftLength > rightLength
-                    ? leftLength : rightLength) + 1) / 2;
+                var n = (leftLength < rightLength
+                      ? leftLength : rightLength) / 2;
 
+                // x = (x_1 << n) + x_0
                 var leftLowOffset = leftOffset;
+                var leftLowLength = n;
                 var leftHighOffset = leftOffset + n;
+                var leftHighLength = leftLength - n;
+
+                // y = (y_1 << n) + y_0
                 var rightLowOffset = rightOffset;
+                var rightLowLength = n;
                 var rightHighOffset = rightOffset + n;
+                var rightHighLength = rightLength - n;
 
-                var leftLowLength = (n < leftLength) ? n : leftLength;
-                var leftHighLength = leftLength - leftLowLength;
-                var rightLowLength = (n < rightLength) ? n : rightLength;
-                var rightHighLength = rightLength - rightLowLength;
+                // z_0 = x_0 * y_0
+                Multiply(left, leftLowLength, leftLowOffset,
+                         right, rightLowLength, rightLowOffset,
+                         bits, bitsOffset);
 
-                var p1 = Multiply(left, leftHighLength, leftHighOffset,
-                                  right, rightHighLength, rightHighOffset);
-                var p2 = Multiply(left, leftLowLength, leftLowOffset,
-                                  right, rightLowLength, rightLowOffset);
-                var p3 = Multiply(Add(left, leftLowLength, leftLowOffset,
-                    leftHighLength, leftHighOffset), leftLowLength + 1, 0,
-                    Add(right, rightLowLength, rightLowOffset,
-                    rightHighLength, rightHighOffset), rightLowLength + 1, 0);
+                // z_2 = x_1 * y_1
+                Multiply(left, leftHighLength, leftHighOffset,
+                         right, rightHighLength, rightHighOffset,
+                         bits, bitsOffset + n * 2);
 
-                SubtractSelf(p3, p3.Length, p1, p1.Length);
-                SubtractSelf(p3, p3.Length, p2, p2.Length);
+                // z_x = x_1 + x_0
+                var leftFold = AddFold(left, leftHighLength, leftHighOffset,
+                                       leftLowLength, leftLowOffset);
+                var leftFoldLength = leftFold[leftFold.Length - 1] == 0
+                                   ? leftFold.Length - 1 : leftFold.Length;
+
+                // z_y = y_1 + y_0
+                var rightFold = AddFold(right, rightHighLength, rightHighOffset,
+                                        rightLowLength, rightLowOffset);
+                var rightFoldLength = rightFold[rightFold.Length - 1] == 0
+                                    ? rightFold.Length - 1 : rightFold.Length;
+
+                // z_1 = z_x * z_y - z_0 - z_2
+                var core = Multiply(leftFold, leftFoldLength,
+                                    rightFold, rightFoldLength);
+                SubtractCore(bits,
+                    leftHighLength + rightHighLength, bitsOffset + n * 2,
+                    leftLowLength + rightLowLength, bitsOffset,
+                    core, core.Length);
 
                 // merge the result
-                AddSelf(bits, bits.Length, p2, p2.Length);
-                AddSelf(bits, bits.Length, p3, p3.Length, n);
-                AddSelf(bits, bits.Length, p1, p1.Length, n * 2);
+                AddSelf(bits, bits.Length, core, core.Length, bitsOffset + n);
             }
-
-            return bits;
         }
 
         public static uint[] Divide(uint[] left, int leftLength,
