@@ -9,9 +9,12 @@ namespace NeinMath.Tests
         [IntegerData]
         public void ToByteArray(Integer value, byte[] expected)
         {
-            var actual = IntegerConverter.ToByteArray(value);
+            using (Immutability.Guard(value))
+            {
+                var actual = IntegerConverter.ToByteArray(value);
 
-            Assert.Equal(expected, actual);
+                Assert.Equal(expected, actual);
+            }
         }
 
         [Theory]
@@ -27,9 +30,12 @@ namespace NeinMath.Tests
         [IntegerData]
         public void ToDecimalString(Integer value, string expected)
         {
-            var actual = IntegerConverter.ToDecimalString(value);
+            using (Immutability.Guard(value))
+            {
+                var actual = IntegerConverter.ToDecimalString(value);
 
-            Assert.Equal(expected, actual);
+                Assert.Equal(expected, actual);
+            }
         }
 
         [Theory]
@@ -45,9 +51,12 @@ namespace NeinMath.Tests
         [IntegerData]
         public void ToHexString(Integer value, string expected)
         {
-            var actual = IntegerConverter.ToHexString(value);
+            using (Immutability.Guard(value))
+            {
+                var actual = IntegerConverter.ToHexString(value);
 
-            Assert.Equal(expected, actual);
+                Assert.Equal(expected, actual);
+            }
         }
 
         [Theory]

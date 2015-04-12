@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Immutability.cs" />
     <Compile Include="IntegerConverterData.cs" />
     <Compile Include="IntegerConverterTest.cs" />
     <Compile Include="IntegerData.cs" />

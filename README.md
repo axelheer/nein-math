@@ -7,7 +7,7 @@ To install *NeinMath*, run the following command in the [NuGet Package Manager C
 
     PM> Install-Package NeinMath
 
-It's generally based on [this work][0], but rewritten to not use pointer arithmetic and other fancy things. Thus, it's a bit slower albeit portable.
+It's generally based on the integer implementation of [this work][0], but rewritten to not use pointer arithmetic and other fancy things. Thus, it's a bit slower albeit portable.
 
 
 Performance
@@ -57,7 +57,7 @@ Integer Gcd(Integer left, Integer right)
 }
 ```
 
-Use at your own risk.
+*Note:* calling `left.Gcd(right)` is much faster, since the internal implementation is based on a more sophisticated algorithm.
 
 Fractions
 ---------
