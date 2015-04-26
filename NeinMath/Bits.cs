@@ -1,7 +1,7 @@
 ﻿namespace NeinMath
 {
     /// <remarks>
-    /// Helper methods to to keep all the bits in rein.
+    /// Helper methods to keep all the bits in rein.
     /// </remarks>
     internal static class Bits
     {

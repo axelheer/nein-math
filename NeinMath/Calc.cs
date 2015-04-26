@@ -233,8 +233,6 @@
                                    int rightOffset)
         {
             var bound = rightOffset + rightLength;
-            if (bound > leftLength)
-                bound = leftLength;
             var carry = 0L;
 
             // adds the bits
@@ -291,7 +289,7 @@
             bits[0] = (uint)digit;
             var carry = digit >> 32;
 
-            // substracts the bits
+            // subtracts the bits
             for (var i = 1; i < leftLength; i++)
             {
                 digit = left[i] + carry;
@@ -308,7 +306,7 @@
             var bits = new uint[leftLength];
             var carry = 0L;
 
-            // substracts the bits
+            // subtracts the bits
             for (var i = 0; i < rightLength; i++)
             {
                 var digit = (left[i] + carry) - right[i];
@@ -330,7 +328,7 @@
         {
             var carry = 0L;
 
-            // substract the bits
+            // subtract the bits
             for (var i = 0; i < rightLength; i++)
             {
                 var digit = (left[i] + carry) - right[i];
@@ -350,11 +348,9 @@
                                         int rightOffset)
         {
             var bound = rightOffset + rightLength;
-            if (bound > leftLength)
-                bound = leftLength;
             var carry = 0L;
 
-            // substract the bits
+            // subtract the bits
             for (var i = rightOffset; i < bound; i++)
             {
                 var digit = (left[i] + carry) - right[i - rightOffset];
@@ -376,7 +372,7 @@
         {
             var carry = 0L;
 
-            // substract the bits
+            // subtract the bits
             for (var i = 0; i < rightLength; i++)
             {
                 var digit = (core[i] + carry)
@@ -639,7 +635,7 @@
                                     uint[] right, int rightLength,
                                     out uint[] remainder)
         {
-            var bits = new uint[leftLength - rightLength + 1];
+           var bits = new uint[leftLength - rightLength + 1];
 
             // get more bits into the highest bit block
             var shifted = Bits.LeadingZeros(right[rightLength - 1]);
@@ -651,6 +647,8 @@
                 ? left.Length - 1 : left.Length;
 
             // these values are useful
+            var divHi = right[rightLength - 1];
+            var divLo = rightLength > 1 ? right[rightLength - 2] : 0;
             var guess = new uint[rightLength + 1];
             var guessLength = 0;
             var delta = 0;
@@ -673,12 +671,17 @@
             for (var i = leftLength - 1; i >= rightLength; i--)
             {
                 // first guess for the current bit of the quotient
-                var digits = (left[i - 1] | ((ulong)left[i] << 32))
-                    / right[rightLength - 1];
+                var leftHi = (left[i - 1] | ((ulong)left[i] << 32));
+                var digits = leftHi / divHi;
                 if (digits > 0xFFFFFFFF)
                     digits = 0xFFFFFFFF;
 
                 // the guess may be a little bit to big
+                var check = divHi * digits + ((divLo * digits) >> 32);
+                if (check > leftHi)
+                    --digits;
+
+                // the guess may be still a little bit to big
                 do
                 {
                     MultiplyDivisor(right, rightLength, digits, guess);
