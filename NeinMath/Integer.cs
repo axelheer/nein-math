@@ -541,9 +541,9 @@ namespace NeinMath
         public int CompareTo(object obj)
         {
             if (obj == null)
-                throw new ArgumentNullException("obj");
+                throw new ArgumentNullException(nameof(obj));
             if (!(obj is Integer))
-                throw new ArgumentOutOfRangeException("obj");
+                throw new ArgumentOutOfRangeException(nameof(obj));
             return CompareTo((Integer)obj);
         }
 

@@ -89,7 +89,7 @@ namespace NeinMath
         public static Integer ModInv(this Integer value, Integer modulus)
         {
             if (modulus < 1)
-                throw new ArgumentOutOfRangeException("modulus");
+                throw new ArgumentOutOfRangeException(nameof(modulus));
 
             if (Abs(value) >= modulus)
                 value = value % modulus;
@@ -111,7 +111,7 @@ namespace NeinMath
         public static Integer Pow(this Integer value, int power)
         {
             if (power < 0)
-                throw new ArgumentOutOfRangeException("power");
+                throw new ArgumentOutOfRangeException(nameof(power));
 
             Integer result = 1;
 
@@ -186,9 +186,9 @@ namespace NeinMath
                                      Integer modulus)
         {
             if (power < 0)
-                throw new ArgumentOutOfRangeException("power");
+                throw new ArgumentOutOfRangeException(nameof(power));
             if (modulus < 1)
-                throw new ArgumentOutOfRangeException("modulus");
+                throw new ArgumentOutOfRangeException(nameof(modulus));
 
             var barrett = Barrett.Begin(modulus);
 

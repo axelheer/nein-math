@@ -40,7 +40,7 @@ namespace NeinMath
         public static Integer FromByteArray(byte[] value)
         {
             if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
 
             var sign = value.Length != 0
                 && (value[value.Length - 1] & 0x80) != 0;
@@ -85,9 +85,9 @@ namespace NeinMath
         public static Integer FromHexString(string value)
         {
             if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             if (value.Length == 0)
-                throw new ArgumentOutOfRangeException("value");
+                throw new ArgumentOutOfRangeException(nameof(value));
 
             var sign = value[0] >= '8' ? "F" : "0";
             if (value.Length % 2 == 1)
@@ -137,9 +137,9 @@ namespace NeinMath
         public static Integer FromDecimalString(string value)
         {
             if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             if (value.Length == 0)
-                throw new ArgumentOutOfRangeException("value");
+                throw new ArgumentOutOfRangeException(nameof(value));
 
             var sign = value[0] == '-';
             if (sign)
