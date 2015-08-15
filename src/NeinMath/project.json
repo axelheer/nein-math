@@ -1,0 +1,60 @@
+﻿{
+  "version": "0.2.2",
+  "description": "NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.",
+  "authors": [ "Axel Heer" ],
+  "tags": [ "Math", "BigInteger" ],
+  "projectUrl": "http://github.com/axelheer/nein-math",
+  "licenseUrl": "http://opensource.org/licenses/mit",
+  "copyright": "Copyright © 2011-2015 Axel Heer",
+
+  "releaseNotes": "Minor improvements.",
+
+  "compilationOptions": {
+    "keyFile": "NeinMath.snk"
+  },
+
+  "frameworks": {
+    "dotnet": {
+      "dependencies": {
+        "System.Globalization": "4.0.10",
+        "System.Runtime": "4.0.20",
+        "System.Runtime.Extensions": "4.0.10"
+      }
+    },
+    "net4": {
+      "frameworkAssemblies": {
+        "mscorlib": "4.0.0.0",
+        "System": "4.0.0.0",
+        "System.Core": "4.0.0.0"
+      }
+    },
+    "netcore45": {
+      "frameworkAssemblies": {
+        "System.Globalization": "4.0.0.0",
+        "System.Runtime": "4.0.0.0",
+        "System.Runtime.Extensions": "4.0.0.0"
+      }
+    },
+    "sl5": {
+      "frameworkAssemblies": {
+        "mscorlib": "5.0.5.0",
+        "System": "5.0.5.0",
+        "System.Core": "5.0.5.0"
+      }
+    },
+    "wp8": {
+      "frameworkAssemblies": {
+        "mscorlib": "2.0.5.0",
+        "System": "2.0.5.0",
+        "System.Core": "2.0.5.0"
+      }
+    },
+    "wpa81": {
+      "frameworkAssemblies": {
+        "System.Globalization": "4.0.0.0",
+        "System.Runtime": "4.0.10.0",
+        "System.Runtime.Extensions": "4.0.0.0"
+      }
+    }
+  }
+}

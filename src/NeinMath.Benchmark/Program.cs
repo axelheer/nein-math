@@ -10,9 +10,6 @@ namespace NeinMath.Benchmark
 
         public static void Main(string[] args)
         {
-            SpeedBoost();
-            SanityCheck();
-
             ParseOp(args);
             ParseBits(args);
             ParseRunCount(args);
@@ -126,31 +123,6 @@ namespace NeinMath.Benchmark
                     return a;
             }
             return null;
-        }
-
-        private static void SpeedBoost()
-        {
-#if !DEBUG
-            System.Diagnostics.Process.GetCurrentProcess().PriorityClass
-                = System.Diagnostics.ProcessPriorityClass.High;
-            System.Threading.Thread.CurrentThread.Priority
-                = System.Threading.ThreadPriority.Highest;
-#endif
-        }
-
-        private static void SanityCheck()
-        {
-#if DEBUG
-            Console.WriteLine("WARNING: you're using a debug build...");
-            Console.WriteLine("...so don't take the results for real.");
-            Console.WriteLine();
-#endif
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                Console.WriteLine("WARNING: you're debugging this junk...");
-                Console.WriteLine("...so don't take the results for real.");
-                Console.WriteLine();
-            }
         }
     }
 }

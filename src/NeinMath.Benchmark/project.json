@@ -1,0 +1,23 @@
+﻿{
+  "commands": {
+    "run": "NeinMath.Benchmark"
+  },
+
+  "dependencies": {
+    "NeinMath": "0.2.2"
+  },
+
+  "frameworks": {
+    "dnx46": {
+      "frameworkAssemblies": {
+        "System.Numerics": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-beta-*",
+        "System.Runtime.Numerics": "4.0.0"
+      }
+    }
+  }
+}

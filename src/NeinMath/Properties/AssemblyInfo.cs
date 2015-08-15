@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("NeinMath.Tests")]
+[assembly: AssemblyTitle("NeinMath")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Axel Heer")]
@@ -9,3 +10,5 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © 2011-2015 Axel Heer")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
