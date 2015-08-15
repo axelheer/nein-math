@@ -9,6 +9,7 @@ To install *NeinMath*, run the following command in the [NuGet Package Manager C
 
 It's generally based on the integer implementation of [this work][0], but rewritten to not use pointer arithmetic and other fancy things. Thus, it's a bit slower albeit portable.
 
+*Note:* starting with the new .NET Core this project becomes a bit obsolete, because the performance gains disappear since some improvements have been [contributed][2]. :tada:
 
 Performance
 -----------
@@ -67,3 +68,4 @@ Coming sometime... maybe... who knows?
 
 [0]: http://axel.heer.eu/2011/02/05/big-integer-arithmetik/
 [1]: http://msdn.microsoft.com/library/system.numerics.biginteger
+[2]: http://github.com/dotnet/corefx/issues/1307
