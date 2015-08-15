@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5B6A71B6-E
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NeinMath.Tests", "test\NeinMath.Tests\NeinMath.Tests.xproj", "{8D938725-2655-4594-9748-3C2F6E95752D}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NeinMath.xunit", "test\NeinMath.xunit\NeinMath.xunit.xproj", "{1A1AB258-28DE-40B3-9B21-8AC78E8DAB19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8D938725-2655-4594-9748-3C2F6E95752D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D938725-2655-4594-9748-3C2F6E95752D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D938725-2655-4594-9748-3C2F6E95752D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A1AB258-28DE-40B3-9B21-8AC78E8DAB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A1AB258-28DE-40B3-9B21-8AC78E8DAB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A1AB258-28DE-40B3-9B21-8AC78E8DAB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A1AB258-28DE-40B3-9B21-8AC78E8DAB19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,5 +53,6 @@ Global
 		{72C9F5C5-37DE-4F12-9E19-C6F60EA3A7E8} = {498F7B04-1C1A-4391-9345-DE7443E57B86}
 		{C32024B5-3ABA-45F2-BE6B-C62C065FA4D3} = {498F7B04-1C1A-4391-9345-DE7443E57B86}
 		{8D938725-2655-4594-9748-3C2F6E95752D} = {5B6A71B6-E783-4309-988E-AF374A56447A}
+		{1A1AB258-28DE-40B3-9B21-8AC78E8DAB19} = {5B6A71B6-E783-4309-988E-AF374A56447A}
 	EndGlobalSection
 EndGlobal

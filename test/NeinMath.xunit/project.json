@@ -1,0 +1,11 @@
+﻿{
+  "version": "1.0.0",
+
+  "dependencies": {
+    "xunit.extensibility.core": "2.1.0-beta4-*"
+  },
+
+  "frameworks": {
+    "dotnet": { }
+  }
+}

@@ -10,13 +10,13 @@ namespace NeinMath.Tests
     {
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
         {
-            var testType = testMethod.DeclaringType.FullName;
-            var dataType = testType.Remove(testType.Length - 4) + "Data";
+            var testType = testMethod.DeclaringType.AssemblyQualifiedName;
+            var dataType = testType.Replace("Test, ", "Data, ");
 
             var type = Type.GetType(dataType);
             var data = Activator.CreateInstance(type);
 
-            var exec = type.GetMethod(testMethod.Name, new Type[0]);
+            var exec = type.GetRuntimeMethod(testMethod.Name, new Type[0]);
             var test = (IEnumerable<object[]>)exec.Invoke(data, new object[0]);
 
             return test;
