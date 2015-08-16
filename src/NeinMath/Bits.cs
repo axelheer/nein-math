@@ -3,7 +3,7 @@
     /// <remarks>
     /// Helper methods to keep all the bits in rein.
     /// </remarks>
-    internal static class Bits
+    static class Bits
     {
         public static int Length(uint[] value, int length)
         {

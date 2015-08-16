@@ -63,7 +63,7 @@ namespace NeinMath.Tests
         {
             var data = new TheoryData<Integer, Integer>();
             foreach (var i in Items(BigIntegers(), BigIntegers(x => x != 0,
-                                                               x => BigInteger.Abs(x))))
+                                                               BigInteger.Abs)))
                 data.Add(ToInteger(i.Item1), ToInteger(i.Item2));
             return data;
         }
@@ -91,7 +91,7 @@ namespace NeinMath.Tests
             var data = new TheoryData<Integer, Integer, Integer, Integer>();
             foreach (var i in Items(BigIntegers(),
                                     BigIntegers(x => BigInteger.Abs(x)),
-                                    BigIntegers(x => x != 0, x => BigInteger.Abs(x))))
+                                    BigIntegers(x => x != 0, BigInteger.Abs)))
                 data.Add(ToInteger(i.Item1), ToInteger(i.Item2), ToInteger(i.Item3),
                     ToInteger(BigInteger.ModPow(i.Item1, i.Item2, i.Item3)));
             return data;

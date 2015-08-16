@@ -5,10 +5,10 @@ namespace NeinMath.Tests
 {
     public abstract class IntegerDataSource
     {
-        private const int testCount = 1000;
+        const int testCount = 1000;
 
         // don't make it too random...
-        private readonly Random random = new Random(1138);
+        readonly Random random = new Random(1138);
 
         protected double[] Floats()
         {

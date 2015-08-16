@@ -5,7 +5,7 @@
     /// parameters must be used. The left parameter, if any, is always assumed
     /// as the more lengthy one. No checks, beware!
     /// </remarks>
-    internal static class Calc
+    static class Calc
     {
         public static uint[] And(uint[] left, int leftLength,
                                  uint right, uint rightPad)
@@ -250,9 +250,9 @@
             }
         }
 
-        private static uint[] AddFold(uint[] value,
-                                      int leftLength, int leftOffset,
-                                      int rightLength, int rightOffset)
+        static uint[] AddFold(uint[] value,
+                              int leftLength, int leftOffset,
+                              int rightLength, int rightOffset)
         {
             var bits = new uint[leftLength + 1];
             var carry = 0L;
@@ -365,10 +365,10 @@
             }
         }
 
-        private static void SubtractCore(uint[] value,
-                                         int leftLength, int leftOffset,
-                                         int rightLength, int rightOffset,
-                                         uint[] core, int coreLength)
+        static void SubtractCore(uint[] value,
+                                 int leftLength, int leftOffset,
+                                 int rightLength, int rightOffset,
+                                 uint[] core, int coreLength)
         {
             var carry = 0L;
 
@@ -403,11 +403,11 @@
 
 #if DEBUG
 
-        private const int SquareThreshold = 128 / 32;
+        const int SquareThreshold = 128 / 32;
 
 #else
 
-        private const int SquareThreshold = 2048 / 32;
+        const int SquareThreshold = 2048 / 32;
 
 #endif
 
@@ -421,9 +421,9 @@
             return bits;
         }
 
-        private static void Square(uint[] value, int valueLength,
-                                   int valueOffset,
-                                   uint[] bits, int bitsOffset)
+        static void Square(uint[] value, int valueLength,
+                           int valueOffset,
+                           uint[] bits, int bitsOffset)
         {
             if (valueLength < SquareThreshold)
             {
@@ -500,11 +500,11 @@
 
 #if DEBUG
 
-        private const int MultiplyThreshold = 128 / 32;
+        const int MultiplyThreshold = 128 / 32;
 
 #else
 
-        private const int MultiplyThreshold = 1024 / 32;
+        const int MultiplyThreshold = 1024 / 32;
 
 #endif
 
@@ -522,11 +522,11 @@
             return bits;
         }
 
-        private static void Multiply(uint[] left, int leftLength,
-                                     int leftOffset,
-                                     uint[] right, int rightLength,
-                                     int rightOffset,
-                                     uint[] bits, int bitsOffset)
+        static void Multiply(uint[] left, int leftLength,
+                             int leftOffset,
+                             uint[] right, int rightLength,
+                             int rightOffset,
+                             uint[] bits, int bitsOffset)
         {
             if (leftLength < MultiplyThreshold
                 || rightLength < MultiplyThreshold)
@@ -706,8 +706,8 @@
             return bits;
         }
 
-        private static void MultiplyDivisor(uint[] left, int leftLength,
-                                            ulong right, uint[] bits)
+        static void MultiplyDivisor(uint[] left, int leftLength,
+                                    ulong right, uint[] bits)
         {
             // multiplies the bits
             var carry = 0UL;

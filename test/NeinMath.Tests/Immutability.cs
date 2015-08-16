@@ -5,25 +5,25 @@ namespace NeinMath.Tests
 {
     public sealed class Immutability : IDisposable
     {
-        private readonly Integer left;
-        private readonly Integer right;
-        private readonly Integer other;
+        readonly Integer left;
+        readonly Integer right;
+        readonly Integer other;
 
-        private readonly string leftValue;
-        private readonly string rightValue;
-        private readonly string otherValue;
+        readonly string leftValue;
+        readonly string rightValue;
+        readonly string otherValue;
 
-        private Immutability(Integer value)
+        Immutability(Integer value)
             : this(value, default(Integer))
         {
         }
 
-        private Immutability(Integer left, Integer right)
+        Immutability(Integer left, Integer right)
             : this(left, right, default(Integer))
         {
         }
 
-        private Immutability(Integer left, Integer right, Integer other)
+        Immutability(Integer left, Integer right, Integer other)
         {
             leftValue = left.ToString();
             rightValue = right.ToString();

@@ -1,6 +1,6 @@
 ﻿namespace NeinMath
 {
-    internal static class Lehmer
+    static class Lehmer
     {
         public static Integer Gcd(Integer x, Integer y)
         {
@@ -27,8 +27,8 @@
             return new Integer(result, result.Length, false);
         }
 
-        private static uint[] Gcd(uint[] xBits, int xLength,
-                                  uint[] yBits, int yLength)
+        static uint[] Gcd(uint[] xBits, int xLength,
+                          uint[] yBits, int yLength)
         {
             while (yLength > 1)
             {
@@ -102,8 +102,8 @@
             return Calc.Shift(xBits, xLength, 0, 0);
         }
 
-        private static uint[] Inv(uint[] xBits, int xLength,
-                                  uint[] yBits, int yLength)
+        static uint[] Inv(uint[] xBits, int xLength,
+                          uint[] yBits, int yLength)
         {
             // reserve one digit for the sign!
             var iBits = new uint[xLength + 1];
@@ -210,9 +210,9 @@
             return new uint[] { 0 };
         }
 
-        private static void Values(uint[] xBits, int xLength,
-                                   uint[] yBits, int yLength,
-                                   out long x, out long y)
+        static void Values(uint[] xBits, int xLength,
+                           uint[] yBits, int yLength,
+                           out long x, out long y)
         {
             var xh = 0UL; var xm = 0UL; var xl = 0UL;
             var yh = 0UL; var ym = 0UL; var yl = 0UL;
@@ -250,8 +250,8 @@
             y = (long)(((yh << 32 + z) | (ym << z) | (yl >> 32 - z)) >> 2);
         }
 
-        private static void MulAdd(long a, long b, long c, long d,
-                                   uint[] x, uint[] y, int length)
+        static void MulAdd(long a, long b, long c, long d,
+                           uint[] x, uint[] y, int length)
         {
             var xCarry = 0L;
             var yCarry = 0L;

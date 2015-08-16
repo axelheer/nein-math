@@ -11,7 +11,7 @@ namespace NeinMath.Tests
         {
             using (Immutability.Guard(value))
             {
-                var actual = IntegerConverter.ToByteArray(value);
+                var actual = value.ToByteArray();
 
                 Assert.Equal(expected, actual);
             }
@@ -32,7 +32,7 @@ namespace NeinMath.Tests
         {
             using (Immutability.Guard(value))
             {
-                var actual = IntegerConverter.ToDecimalString(value);
+                var actual = value.ToDecimalString();
 
                 Assert.Equal(expected, actual);
             }
@@ -53,7 +53,7 @@ namespace NeinMath.Tests
         {
             using (Immutability.Guard(value))
             {
-                var actual = IntegerConverter.ToHexString(value);
+                var actual = value.ToHexString();
 
                 Assert.Equal(expected, actual);
             }

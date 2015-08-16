@@ -9,7 +9,7 @@ namespace NeinMath.Benchmark
         public static int RunCount = 10;
         public static int ValCount = 100;
 
-        private static readonly Random random = new Random(1138);
+        static readonly Random random = new Random(1138);
 
         public static void Run<T, U>(
             int valueSize,
@@ -38,7 +38,7 @@ namespace NeinMath.Benchmark
             Run<Integer, U>(leftSize, rightSize, otherSize, Integer, two);
         }
 
-        private static void Run<T, U>(
+        static void Run<T, U>(
             int valueSize,
             Func<int, T> create,
             Func<T, U> run)
@@ -71,7 +71,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("{0} ms / {1} ops", result, ValCount);
         }
 
-        private static void Run<T, U>(
+        static void Run<T, U>(
             int leftSize, int rightSize,
             Func<int, T> create,
             Func<T, T, U> run)
@@ -106,7 +106,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("{0} ms / {1} ops", result, ValCount);
         }
 
-        private static void Run<T, U>(
+        static void Run<T, U>(
             int leftSize, int rightSize, int otherSize,
             Func<int, T> create,
             Func<T, T, T, U> run)
@@ -143,7 +143,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("{0} ms / {1} ops", result, ValCount);
         }
 
-        private static Integer Integer(int size)
+        static Integer Integer(int size)
         {
             var value = new byte[(size + 7) / 8 + 1];
             random.NextBytes(value);
@@ -151,7 +151,7 @@ namespace NeinMath.Benchmark
             return IntegerConverter.FromByteArray(value);
         }
 
-        private static BigInteger BigInteger(int size)
+        static BigInteger BigInteger(int size)
         {
             var value = new byte[(size + 7) / 8 + 1];
             random.NextBytes(value);

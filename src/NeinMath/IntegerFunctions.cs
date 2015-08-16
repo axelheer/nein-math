@@ -141,6 +141,8 @@ namespace NeinMath
             if (baseValue < 0)
                 return double.NaN;
 
+#pragma warning disable RECS0018
+
             if (baseValue == 0)
                 return value != 1 ? double.NaN : 0;
             if (double.IsPositiveInfinity(baseValue))
@@ -149,6 +151,8 @@ namespace NeinMath
                 return double.NaN;
             if (baseValue == 1)
                 return double.NaN;
+
+#pragma warning restore RECS0018
 
             if (value == 0)
                 return baseValue < 1

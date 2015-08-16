@@ -5,8 +5,8 @@ namespace NeinMath.Benchmark
 {
     public static class Program
     {
-        private static int bits = 4096;
-        private static string op = "mul";
+        static int bits = 4096;
+        static string op = "mul";
 
         public static void Main(string[] args)
         {
@@ -79,7 +79,7 @@ namespace NeinMath.Benchmark
             }
         }
 
-        private static void ParseOp(string[] args)
+        static void ParseOp(string[] args)
         {
             if (args.Length > 0)
                 op = args[0].ToLowerInvariant();
@@ -87,7 +87,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("Operation: {0}", op);
         }
 
-        private static void ParseBits(string[] args)
+        static void ParseBits(string[] args)
         {
             var a = ParseIntArg(args, 1);
             if (a.HasValue)
@@ -96,7 +96,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("# of bits: {0}", bits);
         }
 
-        private static void ParseRunCount(string[] args)
+        static void ParseRunCount(string[] args)
         {
             var a = ParseIntArg(args, 2);
             if (a.HasValue)
@@ -105,7 +105,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("# of runs: {0}", Benchmark.RunCount);
         }
 
-        private static void ParseValCount(string[] args)
+        static void ParseValCount(string[] args)
         {
             var a = ParseIntArg(args, 3);
             if (a.HasValue)
@@ -114,7 +114,7 @@ namespace NeinMath.Benchmark
             Console.WriteLine("# of vals: {0}", Benchmark.ValCount);
         }
 
-        private static int? ParseIntArg(string[] args, int index)
+        static int? ParseIntArg(string[] args, int index)
         {
             if (args.Length > index)
             {

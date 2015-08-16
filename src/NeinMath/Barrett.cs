@@ -1,16 +1,16 @@
 ﻿namespace NeinMath
 {
-    internal sealed class Barrett
+    sealed class Barrett
     {
-        private readonly uint[] m;
-        private readonly int ml;
+        readonly uint[] m;
+        readonly int ml;
 
-        private readonly uint[] u;
-        private readonly int ul;
+        readonly uint[] u;
+        readonly int ul;
 
-        private readonly int L;
+        readonly int L;
 
-        private Barrett(Integer modulus, Integer R, Integer mu)
+        Barrett(Integer modulus, Integer R, Integer mu)
         {
             m = modulus.bits;
             ml = modulus.length;
