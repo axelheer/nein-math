@@ -16,9 +16,9 @@
   "frameworks": {
     "dotnet": {
       "dependencies": {
-        "System.Globalization": "4.0.10",
-        "System.Runtime": "4.0.20",
-        "System.Runtime.Extensions": "4.0.10"
+        "System.Globalization": "4.0.0",
+        "System.Runtime": "4.0.0",
+        "System.Runtime.Extensions": "4.0.0"
       }
     },
     "net4": {
@@ -35,34 +35,6 @@
           "type": "build",
           "version": "4.0.0.0"
         }
-      }
-    },
-    "netcore45": {
-      "frameworkAssemblies": {
-        "System.Globalization": "4.0.0.0",
-        "System.Runtime": "4.0.0.0",
-        "System.Runtime.Extensions": "4.0.0.0"
-      }
-    },
-    "sl5": {
-      "frameworkAssemblies": {
-        "mscorlib": "5.0.5.0",
-        "System": "5.0.5.0",
-        "System.Core": "5.0.5.0"
-      }
-    },
-    "wp8": {
-      "frameworkAssemblies": {
-        "mscorlib": "2.0.5.0",
-        "System": "2.0.5.0",
-        "System.Core": "2.0.5.0"
-      }
-    },
-    "wpa81": {
-      "frameworkAssemblies": {
-        "System.Globalization": "4.0.0.0",
-        "System.Runtime": "4.0.10.0",
-        "System.Runtime.Extensions": "4.0.0.0"
       }
     }
   }
