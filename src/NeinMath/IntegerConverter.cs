@@ -21,7 +21,7 @@ namespace NeinMath
             var bits = value.length * 32
                 - Bits.LeadingZeros(value.bits[value.length - 1]) + 1;
             var bytes = new byte[(bits + 7) / 8];
-            for (var i = 0; i < bytes.Length; i++)
+            for (var i = 0; i < Math.Min(bytes.Length, value.length * 4); i++)
             {
                 var shift = (i % 4) * 8;
                 bytes[i] = (byte)(value.bits[i / 4] >> shift);

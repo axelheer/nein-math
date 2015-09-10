@@ -128,7 +128,7 @@
 
         public static uint[] TwosComplement(uint[] value, int length)
         {
-            var result = new uint[length + 1];
+            var result = new uint[length];
 
             var carry = 1UL;
             for (var i = 0; i < length; i++)
@@ -137,7 +137,11 @@
                 result[i] = (uint)digit;
                 carry = digit >> 32;
             }
-            result[length] = (uint)carry;
+            if (carry != 0)
+            {
+                result = new uint[length + 1];
+                result[length] = 1;
+            }
 
             return result;
         }
@@ -153,28 +157,25 @@
                 result[i] = (byte)digit;
                 carry = digit >> 8;
             }
+            if (carry != 0)
+            {
+                result = new byte[length + 1];
+                result[length] = 1;
+            }
 
             return result;
         }
 
         public static ulong Abs(long value)
         {
-            var result = (ulong)value;
-
-            if ((result & 0x8000000000000000) != 0)
-                result = ~result + 1;
-
-            return result;
+            var mask = (uint)(value >> 63);
+            return ((uint)value ^ mask) - mask;
         }
 
         public static uint Abs(int value)
         {
-            var result = (uint)value;
-
-            if ((result & 0x80000000) != 0)
-                result = ~result + 1;
-
-            return result;
+            var mask = (uint)(value >> 31);
+            return ((uint)value ^ mask) - mask;
         }
     }
 }
