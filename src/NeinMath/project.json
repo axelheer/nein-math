@@ -7,7 +7,7 @@
   "licenseUrl": "http://opensource.org/licenses/mit",
   "copyright": "Copyright © 2011-2015 Axel Heer",
 
-  "releaseNotes": "Minor improvements.",
+  "releaseNotes": "Fixed bug within `ToByteArray`.",
 
   "compilationOptions": {
     "keyFile": "NeinMath.snk"
