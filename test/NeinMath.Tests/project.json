@@ -7,13 +7,13 @@
     "NeinMath": "0.2.3",
     "NeinMath.xunit": "1.0.0",
     "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-beta5a-*"
+    "xunit.runner.dnx": "2.1.0-beta6-*"
   },
 
   "frameworks": {
     "dnx46": {
       "frameworkAssemblies": {
-        "System.Numerics": "4.0.0.0"
+        "System.Numerics": ""
       }
     },
     "dnxcore50": {
