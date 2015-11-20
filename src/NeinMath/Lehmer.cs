@@ -20,10 +20,7 @@
 
             var result = Inv(xBits, x.length, yBits, y.length);
             if (result[result.Length - 1] != 0)
-            {
-                result = Bits.TwosComplement(result, result.Length);
-                return new Integer(result, result.Length, true);
-            }
+                Calc.AddSelf(result, result.Length, x.bits, x.length);
             return new Integer(result, result.Length, false);
         }
 
