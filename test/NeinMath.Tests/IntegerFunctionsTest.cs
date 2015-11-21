@@ -84,12 +84,15 @@ namespace NeinMath.Tests
             using (Immutability.Guard(value, modulus))
             {
                 var result = value.ModInv(modulus);
-                var common = value.Gcd(modulus);
 
+                Assert.False(result < 0);
+
+                var common = value.Gcd(modulus);
                 if (value % modulus != 0 && common == 1)
                 {
                     var check = (value * result) % modulus;
-                    if (check < 0)
+
+                    if (value < 0)
                         check = check + modulus;
 
                     Assert.Equal(1, check);
