@@ -85,15 +85,10 @@ namespace NeinMath.Tests
             {
                 var result = value.ModInv(modulus);
 
-                Assert.False(result < 0);
-
                 var common = value.Gcd(modulus);
                 if (value % modulus != 0 && common == 1)
                 {
                     var check = (value * result) % modulus;
-
-                    if (value < 0)
-                        check = check + modulus;
 
                     Assert.Equal(1, check);
                 }

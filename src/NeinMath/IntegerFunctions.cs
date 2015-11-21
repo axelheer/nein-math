@@ -93,8 +93,16 @@ namespace NeinMath
 
             if (Abs(value) >= modulus)
                 value = value % modulus;
+
             if (value < 0)
+            {
                 value = value + modulus;
+                var result = Lehmer.Inv(modulus, value);
+                if (result != 0)
+                    result = result - modulus;
+                return result;
+            }
+
             return Lehmer.Inv(modulus, value);
         }
 
