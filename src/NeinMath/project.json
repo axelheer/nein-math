@@ -1,5 +1,5 @@
 ﻿{
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.",
   "authors": [ "Axel Heer" ],
   "tags": [ "Math", "BigInteger" ],
@@ -7,7 +7,7 @@
   "licenseUrl": "http://opensource.org/licenses/mit",
   "copyright": "Copyright © 2011-2015 Axel Heer",
 
-  "releaseNotes": "Fixed bug within `ToByteArray`.",
+  "releaseNotes": "Improved MODINV.",
 
   "compilationOptions": {
     "keyFile": "NeinMath.snk"

@@ -4,7 +4,7 @@
   },
 
   "dependencies": {
-    "NeinMath": "0.2.3",
+    "NeinMath": "0.2.4",
     "NeinMath.xunit": "1.0.0",
     "xunit": "2.1.0",
     "xunit.runner.dnx": "2.1.0-rc1-*"
