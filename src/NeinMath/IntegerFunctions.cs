@@ -142,7 +142,7 @@ namespace NeinMath
         /// </param>
         /// <param name="baseValue">The base of the logarithm.</param>
         /// <returns>The result of finding the logarithm.</returns>
-        public static double Log(this Integer value, double baseValue = Math.E)
+        public static double Log(this Integer value, double baseValue = 2.7182818284590451)
         {
             if (value < 0)
                 return double.NaN;

@@ -1074,7 +1074,7 @@ namespace NeinMath
         /// <returns>The string representation of the Integer.</returns>
         public override string ToString()
         {
-            return this.ToDecimalString();
+            return IntegerConverter.ToDecimalString(this);
         }
 
         /// <summary>
