@@ -14,13 +14,35 @@
   },
 
   "frameworks": {
-    "dotnet": {
+    "dotnet5.0": {
       "dependencies": {
         "System.Globalization": "4.0.0",
         "System.Runtime": "4.0.0",
         "System.Runtime.Extensions": "4.0.0"
       }
     },
-    "net4": { }
+    "net45": {
+      "frameworkAssemblies": {
+        "System": {
+          "type": "build",
+          "version": ""
+        },
+        "System.Core": {
+          "type": "build",
+          "version": ""
+        },
+        "System.Runtime": {
+          "type": "build",
+          "version": ""
+        }
+      }
+    },
+    "netcore45": {
+      "dependencies": {
+        "System.Globalization": "4.0.0",
+        "System.Runtime": "4.0.0",
+        "System.Runtime.Extensions": "4.0.0"
+      }
+    }
   }
 }
