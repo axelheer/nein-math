@@ -16,8 +16,11 @@ namespace NeinMath.Benchmark
             Func<BigInteger, T> one,
             Func<Integer, U> two)
         {
-            Run<BigInteger, T>(valueSize, BigInteger, one);
-            Run<Integer, U>(valueSize, Integer, two);
+            var oneValues = BigIntegers(valueSize);
+            Run("Numerics", i => one(oneValues[i]));
+
+            var twoValues = Integers(valueSize);
+            Run("NeinMath", i => two(twoValues[i]));
         }
 
         public static void Run<T, U>(
@@ -25,8 +28,13 @@ namespace NeinMath.Benchmark
             Func<BigInteger, BigInteger, T> one,
             Func<Integer, Integer, U> two)
         {
-            Run<BigInteger, T>(leftSize, rightSize, BigInteger, one);
-            Run<Integer, U>(leftSize, rightSize, Integer, two);
+            var oneLeft = BigIntegers(leftSize);
+            var oneRight = BigIntegers(rightSize);
+            Run("Numerics", i => one(oneLeft[i], oneRight[i]));
+
+            var twoLeft = Integers(leftSize);
+            var twoRight = Integers(rightSize);
+            Run("NeinMath", i => two(twoLeft[i], twoRight[i]));
         }
 
         public static void Run<T, U>(
@@ -34,129 +42,77 @@ namespace NeinMath.Benchmark
             Func<BigInteger, BigInteger, BigInteger, T> one,
             Func<Integer, Integer, Integer, U> two)
         {
-            Run<BigInteger, T>(leftSize, rightSize, otherSize, BigInteger, one);
-            Run<Integer, U>(leftSize, rightSize, otherSize, Integer, two);
+            var oneLeft = BigIntegers(leftSize);
+            var oneRight = BigIntegers(rightSize);
+            var oneOther = BigIntegers(otherSize);
+            Run("Numerics", i => one(oneLeft[i], oneRight[i], oneOther[i]));
+
+            var twoLeft = Integers(leftSize);
+            var twoRight = Integers(rightSize);
+            var twoOther = Integers(otherSize);
+            Run("NeinMath", i => two(twoLeft[i], twoRight[i], twoOther[i]));
         }
 
-        static void Run<T, U>(
-            int valueSize,
-            Func<int, T> create,
-            Func<T, U> run)
+        static void Run(string name, Action<int> operation)
         {
-            var value = new T[ValCount];
-
-            // seed test values
-            for (var i = 0; i < ValCount; i++)
-            {
-                value[i] = create(valueSize);
-            }
-
-            Console.Write("{0}: ", typeof(T).Name);
-
-            // run benchmarks
+            var watch = new Stopwatch();
             var result = long.MaxValue;
+
+            operation(0);
+
+            Console.Write("{0}...", name);
+
             for (var j = 0; j < RunCount; j++)
             {
-                var watch = new Stopwatch();
-                watch.Start();
+                watch.Restart();
                 for (var i = 0; i < ValCount; i++)
-                    run(value[i]);
+                    operation(i);
                 watch.Stop();
 
-                if (watch.ElapsedMilliseconds < result)
-                    result = watch.ElapsedMilliseconds;
+                result = Math.Min(result, watch.ElapsedMilliseconds);
             }
 
             // tada!
             Console.WriteLine("{0} ms / {1} ops", result, ValCount);
         }
 
-        static void Run<T, U>(
-            int leftSize, int rightSize,
-            Func<int, T> create,
-            Func<T, T, U> run)
+        static Integer[] Integers(int size)
         {
-            var left = new T[ValCount];
-            var right = new T[ValCount];
-
-            // seed test values
+            var values = new Integer[ValCount];
             for (var i = 0; i < ValCount; i++)
-            {
-                left[i] = create(leftSize);
-                right[i] = create(rightSize);
-            }
-
-            Console.Write("{0}: ", typeof(T).Name);
-
-            // run benchmarks
-            var result = long.MaxValue;
-            for (var j = 0; j < RunCount; j++)
-            {
-                var watch = new Stopwatch();
-                watch.Start();
-                for (var i = 0; i < ValCount; i++)
-                    run(left[i], right[i]);
-                watch.Stop();
-
-                if (watch.ElapsedMilliseconds < result)
-                    result = watch.ElapsedMilliseconds;
-            }
-
-            // tada!
-            Console.WriteLine("{0} ms / {1} ops", result, ValCount);
+                values[i] = IntegerConverter.FromByteArray(RandomBytes(size));
+            return values;
         }
 
-        static void Run<T, U>(
-            int leftSize, int rightSize, int otherSize,
-            Func<int, T> create,
-            Func<T, T, T, U> run)
+        static BigInteger[] BigIntegers(int size)
         {
-            var left = new T[ValCount];
-            var right = new T[ValCount];
-            var other = new T[ValCount];
-
-            // seed test values
+            var values = new BigInteger[ValCount];
             for (var i = 0; i < ValCount; i++)
-            {
-                left[i] = create(leftSize);
-                right[i] = create(rightSize);
-                other[i] = create(otherSize);
-            }
-
-            Console.Write("{0}: ", typeof(T).Name);
-
-            // run benchmarks
-            var result = long.MaxValue;
-            for (var j = 0; j < RunCount; j++)
-            {
-                var watch = new Stopwatch();
-                watch.Start();
-                for (var i = 0; i < ValCount; i++)
-                    run(left[i], right[i], other[i]);
-                watch.Stop();
-
-                if (watch.ElapsedMilliseconds < result)
-                    result = watch.ElapsedMilliseconds;
-            }
-
-            // tada!
-            Console.WriteLine("{0} ms / {1} ops", result, ValCount);
+                values[i] = new BigInteger(RandomBytes(size));
+            return values;
         }
 
-        static Integer Integer(int size)
+        static byte[] RandomBytes(int size)
         {
-            var value = new byte[(size + 7) / 8 + 1];
-            random.NextBytes(value);
-            value[value.Length - 1] = 0x00;
-            return IntegerConverter.FromByteArray(value);
+            var value = new byte[(size + 8) / 8];
+            while (IsZero(value))
+            {
+                random.NextBytes(value);
+                // ensure actual bit count (remaining bits not set)
+                // ensure positive value (highest-order bit not set)
+                value[value.Length - 1] &= (byte)(0xFF >> 8 - size % 8);
+            }
+            return value;
         }
 
-        static BigInteger BigInteger(int size)
+        static bool IsZero(byte[] value)
         {
-            var value = new byte[(size + 7) / 8 + 1];
-            random.NextBytes(value);
-            value[value.Length - 1] = 0x00;
-            return new BigInteger(value);
+            foreach (var b in value)
+            {
+                if (b != 0)
+                    return false;
+            }
+            return true;
         }
     }
 }
