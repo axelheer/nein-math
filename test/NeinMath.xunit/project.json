@@ -6,7 +6,7 @@
   },
 
   "frameworks": {
-    "dotnet5.0": {
+    "dotnet": {
       "dependencies": {
         "System.Collections": "4.0.0",
         "System.Reflection": "4.0.0",

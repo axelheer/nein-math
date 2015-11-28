@@ -120,7 +120,7 @@
 
                 return bits;
             }
-            else if (shift > 0)
+            if (shift > 0)
             {
                 // big shifts move entire blocks
                 var leapShift = shift / 32;
