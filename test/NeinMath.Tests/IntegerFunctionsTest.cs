@@ -1,4 +1,5 @@
 ﻿using NeinMath.Xunit;
+using System;
 using Xunit;
 
 namespace NeinMath.Tests
@@ -99,6 +100,20 @@ namespace NeinMath.Tests
             }
         }
 
+        [Fact]
+        public static void ModInvInvalid()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                    => value.ModInv(0));
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                    => value.ModInv(-1));
+            }
+        }
+
         [Theory]
         [IntegerData]
         public void Pow(Integer value, int power, Integer expected)
@@ -108,6 +123,18 @@ namespace NeinMath.Tests
                 var actual = value.Pow(power);
 
                 Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public static void PowInvalid()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                => value.Pow(-1));
             }
         }
 
@@ -136,6 +163,22 @@ namespace NeinMath.Tests
             }
         }
 
+        [Fact]
+        public static void ModPowInvalid()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                    => value.ModPow(1, 0));
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                    => value.ModPow(1, -1));
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                    => value.ModPow(-1, 1));
+            }
+        }
+
         [Theory]
         [IntegerData]
         public void DivRem(Integer left, Integer right,
@@ -148,6 +191,19 @@ namespace NeinMath.Tests
 
                 Assert.Equal(expectedRemainder, actualRemainder);
                 Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public static void DivRemInvalid()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                var remainder = default(Integer);
+                Assert.Throws<DivideByZeroException>(()
+                    => value.DivRem(0, out remainder));
             }
         }
     }

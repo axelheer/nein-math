@@ -1,4 +1,5 @@
 ﻿using NeinMath.Xunit;
+using System;
 using Xunit;
 
 namespace NeinMath.Tests
@@ -26,6 +27,13 @@ namespace NeinMath.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public static void FromByteArrayNull()
+        {
+            Assert.Throws<ArgumentNullException>(()
+                => IntegerConverter.FromByteArray(null));
+        }
+
         [Theory]
         [IntegerData]
         public void ToDecimalString(Integer value, string expected)
@@ -47,6 +55,15 @@ namespace NeinMath.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public static void FromDecimalStringNullOrEmpty()
+        {
+            Assert.Throws<ArgumentNullException>(()
+                => IntegerConverter.FromDecimalString(null));
+            Assert.Throws<ArgumentOutOfRangeException>(()
+                => IntegerConverter.FromDecimalString(""));
+        }
+
         [Theory]
         [IntegerData]
         public void ToHexString(Integer value, string expected)
@@ -66,6 +83,15 @@ namespace NeinMath.Tests
             var actual = IntegerConverter.FromHexString(value);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public static void FromHexStringNullOrEmpty()
+        {
+            Assert.Throws<ArgumentNullException>(()
+                => IntegerConverter.FromHexString(null));
+            Assert.Throws<ArgumentOutOfRangeException>(()
+                => IntegerConverter.FromHexString(""));
         }
     }
 }

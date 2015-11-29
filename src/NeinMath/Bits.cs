@@ -168,8 +168,8 @@
 
         public static ulong Abs(long value)
         {
-            var mask = (uint)(value >> 63);
-            return ((uint)value ^ mask) - mask;
+            var mask = (ulong)(value >> 63);
+            return ((ulong)value ^ mask) - mask;
         }
 
         public static uint Abs(int value)

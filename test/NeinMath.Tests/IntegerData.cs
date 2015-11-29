@@ -1,9 +1,42 @@
-﻿using Xunit;
+﻿using System.Numerics;
+using Xunit;
 
 namespace NeinMath.Tests
 {
     public class IntegerData : IntegerDataSource
     {
+        public TheoryData<int, Integer> CastFromInt32()
+        {
+            var data = new TheoryData<int, Integer>();
+            foreach (var i in Integers())
+                data.Add(i, ToInteger(new BigInteger(i)));
+            return data;
+        }
+
+        public TheoryData<long, Integer> CastFromInt64()
+        {
+            var data = new TheoryData<long, Integer>();
+            foreach (var i in LongIntegers())
+                data.Add(i, ToInteger(new BigInteger(i)));
+            return data;
+        }
+
+        public TheoryData<Integer, int> CastToInt32()
+        {
+            var data = new TheoryData<Integer, int>();
+            foreach (var i in Integers())
+                data.Add(ToInteger(new BigInteger(i)), i);
+            return data;
+        }
+
+        public TheoryData<Integer, long> CastToInt64()
+        {
+            var data = new TheoryData<Integer, long>();
+            foreach (var i in LongIntegers())
+                data.Add(ToInteger(new BigInteger(i)), i);
+            return data;
+        }
+
         public TheoryData<Integer, int, Integer> BitwiseAndInt()
         {
             var data = new TheoryData<Integer, int, Integer>();
@@ -347,6 +380,14 @@ namespace NeinMath.Tests
             var data = new TheoryData<string, Integer>();
             foreach (var i in BigIntegers())
                 data.Add(i.ToString("R"), ToInteger(i));
+            return data;
+        }
+
+        public TheoryData<Integer> HashCode()
+        {
+            var data = new TheoryData<Integer>();
+            foreach (var i in BigIntegers())
+                data.Add(ToInteger(i));
             return data;
         }
     }

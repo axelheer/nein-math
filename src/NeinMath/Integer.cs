@@ -72,10 +72,13 @@ namespace NeinMath
             var num = value.length != 0
                 ? (int)value.bits[0]
                 : 0;
-            if (value.length > 1 || num < 0)
-                throw new OverflowException();
-            if (value.sign)
-                num *= -1;
+            if (num != int.MinValue || !value.sign)
+            {
+                if (value.length > 1 || num < 0)
+                    throw new OverflowException();
+                if (value.sign)
+                    num *= -1;
+            }
             return num;
         }
 
@@ -97,10 +100,13 @@ namespace NeinMath
                 : value.length != 0
                 ? (long)value.bits[0]
                 : 0;
-            if (value.length > 2 || num < 0)
-                throw new OverflowException();
-            if (value.sign)
-                num *= -1;
+            if (num != long.MinValue || !value.sign)
+            {
+                if (value.length > 2 || num < 0)
+                    throw new OverflowException();
+                if (value.sign)
+                    num *= -1;
+            }
             return num;
         }
 
@@ -435,9 +441,11 @@ namespace NeinMath
         {
             if (obj == null)
                 return false;
-            if (!(obj is Integer))
-                return false;
-            return Equals((Integer)obj);
+            if (obj is int)
+                return Equals((int)obj);
+            if (obj is Integer)
+                return Equals((Integer)obj);
+            return false;
         }
 
         /// <summary>
@@ -542,9 +550,11 @@ namespace NeinMath
         {
             if (obj == null)
                 throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Integer))
-                throw new ArgumentOutOfRangeException(nameof(obj));
-            return CompareTo((Integer)obj);
+            if (obj is int)
+                return CompareTo((int)obj);
+            if (obj is Integer)
+                return CompareTo((Integer)obj);
+            throw new ArgumentOutOfRangeException(nameof(obj));
         }
 
         /// <summary>
@@ -1100,8 +1110,17 @@ namespace NeinMath
         public override int GetHashCode()
         {
             var hash = 0U;
-            for (var i = 0; i < length; i++)
+            for (var i = 0U; i < length; i++)
+            {
+                hash += i;
+                hash *= 2143;
                 hash ^= bits[i];
+            }
+            if (sign)
+            {
+                hash *= 43;
+                hash = ~hash;
+            }
             return (int)hash;
         }
     }

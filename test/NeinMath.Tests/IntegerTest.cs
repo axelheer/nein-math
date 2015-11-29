@@ -1,10 +1,83 @@
 ﻿using NeinMath.Xunit;
+using System;
 using Xunit;
 
 namespace NeinMath.Tests
 {
     public class IntegerTest
     {
+        [Theory]
+        [IntegerData]
+        public void CastFromInt32(int value, Integer expected)
+        {
+            var actual = (Integer)value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [IntegerData]
+        public void CastFromInt64(long value, Integer expected)
+        {
+            var actual = (Integer)value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [IntegerData]
+        public void CastToInt32(Integer value, int expected)
+        {
+            using (Immutability.Guard(value))
+            {
+                var actual = (int)value;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public static void CastToInt32Overflow()
+        {
+            var tooBig = (Integer)int.MaxValue + 1;
+            var tooSmall = (Integer)int.MinValue - 1;
+
+            using (Immutability.Guard(tooBig, tooSmall))
+            {
+                Assert.Throws<OverflowException>(()
+                    => (int)tooBig);
+                Assert.Throws<OverflowException>(()
+                    => (int)tooSmall);
+            }
+        }
+
+        [Theory]
+        [IntegerData]
+        public void CastToInt64(Integer value, long expected)
+        {
+            using (Immutability.Guard(value))
+            {
+                var actual = (long)value;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public static void CastToInt64Overflow()
+        {
+            var tooBig = (Integer)long.MaxValue + 1;
+            var tooSmall = (Integer)long.MinValue - 1;
+
+            using (Immutability.Guard(tooBig, tooSmall))
+            {
+                Assert.Throws<OverflowException>(()
+                    => (long)tooBig);
+                Assert.Throws<OverflowException>(()
+                    => (long)tooSmall);
+            }
+        }
+
         [Theory]
         [IntegerData]
         public void BitwiseAndInt(Integer left, int right, Integer expected)
@@ -139,9 +212,11 @@ namespace NeinMath.Tests
             {
                 var actualOp = left == right;
                 var actualFu = left.Equals(right);
+                var actualObj = left.Equals((object)right);
 
                 Assert.Equal(expected, actualOp);
                 Assert.Equal(expected, actualFu);
+                Assert.Equal(expected, actualObj);
             }
         }
 
@@ -153,9 +228,23 @@ namespace NeinMath.Tests
             {
                 var actualOp = left == right;
                 var actualFu = left.Equals(right);
+                var actualObj = left.Equals((object)right);
 
                 Assert.Equal(expected, actualOp);
                 Assert.Equal(expected, actualFu);
+                Assert.Equal(expected, actualObj);
+            }
+        }
+
+        [Fact]
+        public static void EqualsNullOrInvalid()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.False(value.Equals(null));
+                Assert.False(value.Equals(""));
             }
         }
 
@@ -190,8 +279,10 @@ namespace NeinMath.Tests
             using (Immutability.Guard(left))
             {
                 var actual = left.CompareTo(right);
+                var actualObj = left.CompareTo((object)right);
 
                 Assert.Equal(expected, actual);
+                Assert.Equal(expected, actualObj);
             }
         }
 
@@ -202,8 +293,24 @@ namespace NeinMath.Tests
             using (Immutability.Guard(left, right))
             {
                 var actual = left.CompareTo(right);
+                var actualObj = left.CompareTo((object)right);
 
                 Assert.Equal(expected, actual);
+                Assert.Equal(expected, actualObj);
+            }
+        }
+
+        [Fact]
+        public static void CompareToNullOrInvalid()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<ArgumentNullException>(()
+                    => value.CompareTo(null));
+                Assert.Throws<ArgumentOutOfRangeException>(()
+                    => value.CompareTo(""));
             }
         }
 
@@ -471,6 +578,18 @@ namespace NeinMath.Tests
             }
         }
 
+        [Fact]
+        public static void DivideIntZero()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<DivideByZeroException>(()
+                    => value / 0);
+            }
+        }
+
         [Theory]
         [IntegerData]
         public void Divide(Integer left, Integer right, Integer expected)
@@ -482,6 +601,18 @@ namespace NeinMath.Tests
 
                 Assert.Equal(expected, actualOp);
                 Assert.Equal(expected, actualFu);
+            }
+        }
+
+        [Fact]
+        public static void DivideZero()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<DivideByZeroException>(()
+                    => value / value);
             }
         }
 
@@ -499,6 +630,18 @@ namespace NeinMath.Tests
             }
         }
 
+        [Fact]
+        public static void RemainderIntZero()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<DivideByZeroException>(()
+                    => value % 0);
+            }
+        }
+
         [Theory]
         [IntegerData]
         public void Remainder(Integer left, Integer right, Integer expected)
@@ -510,6 +653,18 @@ namespace NeinMath.Tests
 
                 Assert.Equal(expected, actualOp);
                 Assert.Equal(expected, actualFu);
+            }
+        }
+
+        [Fact]
+        public static void RemainderZero()
+        {
+            var value = (Integer)0;
+
+            using (Immutability.Guard(value))
+            {
+                Assert.Throws<DivideByZeroException>(()
+                    => value % value);
             }
         }
 
@@ -532,6 +687,31 @@ namespace NeinMath.Tests
             var actual = Integer.Parse(value);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [IntegerData]
+        public void HashCode(Integer value)
+        {
+            using (Immutability.Guard(value))
+            {
+                var expected = value.GetHashCode();
+
+                Assert.Equal(expected, value.GetHashCode());
+                Assert.NotEqual(expected, (value + 1).GetHashCode());
+                Assert.NotEqual(expected, (value - 1).GetHashCode());
+                if (value != 0)
+                {
+                    Assert.NotEqual(expected, (-value).GetHashCode());
+                    Assert.NotEqual(expected, (value + value).GetHashCode());
+                    Assert.NotEqual(expected, (value - value).GetHashCode());
+                    if (value != 1)
+                    {
+                        Assert.NotEqual(expected, (value * value).GetHashCode());
+                        Assert.NotEqual(expected, (value / value).GetHashCode());
+                    }
+                }
+            }
         }
     }
 }

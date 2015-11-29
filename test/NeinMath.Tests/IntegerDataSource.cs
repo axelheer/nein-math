@@ -115,6 +115,58 @@ namespace NeinMath.Tests
             return result;
         }
 
+        protected long[] LongIntegers()
+        {
+            return LongIntegers(_ => true, x => x);
+        }
+
+        protected long[] LongIntegers(Func<long, bool> predicate)
+        {
+            return LongIntegers(predicate, x => x);
+        }
+
+        protected long[] LongIntegers(Func<long, long> selector)
+        {
+            return LongIntegers(_ => true, selector);
+        }
+
+        protected long[] LongIntegers(Func<long, bool> predicate,
+                                      Func<long, long> selector)
+        {
+            // mix some common values...
+            // ...with something random!
+            var result = new long[testCount];
+            for (var i = 0; i < testCount; i++)
+            {
+                var value = default(long);
+                do
+                {
+                    switch (random.Next() % 8)
+                    {
+                        case 0:
+                            value = random.Next(-3, 4);
+                            break;
+
+                        case 1:
+                            value = new long[]
+                            {
+                                long.MinValue,
+                                long.MaxValue
+                            }[random.Next(2)];
+                            break;
+
+                        default:
+                            value = (long)random.Next()
+                                  | (long)random.Next() << 32;
+                            break;
+                    }
+                }
+                while (!predicate(value));
+                result[i] = selector(value);
+            }
+            return result;
+        }
+
         protected BigInteger[] BigIntegers()
         {
             return BigIntegers(_ => true, x => x);
