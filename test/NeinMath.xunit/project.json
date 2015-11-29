@@ -2,11 +2,20 @@
   "version": "1.0.0",
 
   "dependencies": {
-    "xunit.extensibility.core": "2.1.0"
+    "xunit.extensibility.core": "2.0.0"
   },
 
   "frameworks": {
-    "dotnet": {
+    "dnx46": {
+      "frameworkAssemblies": {
+        "System.Collections": "",
+        "System.Reflection": "",
+        "System.Reflection.Extensions": "",
+        "System.Runtime": "",
+        "System.Runtime.Extensions": ""
+      }
+    },
+    "dnxcore50": {
       "dependencies": {
         "System.Collections": "4.0.0",
         "System.Reflection": "4.0.0",

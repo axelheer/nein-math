@@ -15,11 +15,21 @@
   "frameworks": {
     "dnx46": {
       "frameworkAssemblies": {
+        "System.Collections": "",
+        "System.Reflection": "",
+        "System.Reflection.Extensions": "",
+        "System.Runtime": "",
+        "System.Runtime.Extensions": "",
         "System.Numerics": ""
       }
     },
     "dnxcore50": {
       "dependencies": {
+        "System.Collections": "4.0.0",
+        "System.Reflection": "4.0.0",
+        "System.Reflection.Extensions": "4.0.0",
+        "System.Runtime": "4.0.0",
+        "System.Runtime.Extensions": "4.0.0",
         "System.Runtime.Numerics": "4.0.0"
       }
     }

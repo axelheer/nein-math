@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 #if SOMETIME
 
 namespace NeinMath
