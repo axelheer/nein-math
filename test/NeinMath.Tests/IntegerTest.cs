@@ -691,6 +691,16 @@ namespace NeinMath.Tests
 
         [Theory]
         [IntegerData]
+        public void HashCodeInt(Integer value, int expected)
+        {
+            using (Immutability.Guard(value))
+            {
+                Assert.Equal(expected, value.GetHashCode());
+            }
+        }
+
+        [Theory]
+        [IntegerData]
         public void HashCode(Integer value)
         {
             using (Immutability.Guard(value))

@@ -383,6 +383,14 @@ namespace NeinMath.Tests
             return data;
         }
 
+        public TheoryData<Integer, int> HashCodeInt()
+        {
+            var data = new TheoryData<Integer, int>();
+            foreach (var i in Integers())
+                data.Add(ToInteger(new BigInteger(i)), i);
+            return data;
+        }
+
         public TheoryData<Integer> HashCode()
         {
             var data = new TheoryData<Integer>();

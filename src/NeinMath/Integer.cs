@@ -1117,10 +1117,7 @@ namespace NeinMath
                 hash ^= bits[i];
             }
             if (sign)
-            {
-                hash *= 43;
-                hash = ~hash;
-            }
+                hash = ~hash + 1;
             return (int)hash;
         }
     }
