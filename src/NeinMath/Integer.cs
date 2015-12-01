@@ -70,16 +70,14 @@ namespace NeinMath
         public static explicit operator int(Integer value)
         {
             var num = value.length != 0
-                ? (int)value.bits[0]
-                : 0;
-            if (num != int.MinValue || !value.sign)
-            {
-                if (value.length > 1 || num < 0)
-                    throw new OverflowException();
-                if (value.sign)
-                    num *= -1;
-            }
-            return num;
+                ? value.bits[0] : 0;
+            if (num > 0x80000000)
+                throw new OverflowException();
+            if (num == 0x80000000 && !value.sign)
+                throw new OverflowException();
+            if (value.sign)
+                num = ~num + 1;
+            return (int)num;
         }
 
         /// <summary>
@@ -95,19 +93,17 @@ namespace NeinMath
         /// </returns>
         public static explicit operator long(Integer value)
         {
-            var num = value.length > 1
-                ? (long)(value.bits[0] | ((ulong)value.bits[1] << 32))
-                : value.length != 0
-                ? (long)value.bits[0]
-                : 0;
-            if (num != long.MinValue || !value.sign)
-            {
-                if (value.length > 2 || num < 0)
-                    throw new OverflowException();
-                if (value.sign)
-                    num *= -1;
-            }
-            return num;
+            var num = value.length != 0
+                ? (ulong)value.bits[0] : 0;
+            if (value.length > 1)
+                num |= (ulong)value.bits[1] << 32;
+            if (num > 0x8000000000000000)
+                throw new OverflowException();
+            if (num == 0x8000000000000000 && !value.sign)
+                throw new OverflowException();
+            if (value.sign)
+                num = ~num + 1;
+            return (long)num;
         }
 
         /// <summary>
@@ -577,7 +573,7 @@ namespace NeinMath
 
             var result = Bits.Compare(bits, length, Bits.Abs(other));
             if (sign)
-                result *= -1;
+                result = -result;
 
             return result;
         }
@@ -601,7 +597,7 @@ namespace NeinMath
 
             var result = Bits.Compare(bits, length, other.bits, other.length);
             if (sign)
-                result *= -1;
+                result = -result;
 
             return result;
         }
@@ -1030,9 +1026,10 @@ namespace NeinMath
                 throw new DivideByZeroException();
 
             var result = Calc.Remainder(bits, length, Bits.Abs(right));
-            return sign
-                ? -1 * (int)result
-                : (int)result;
+            if (sign)
+                result = ~result + 1;
+
+            return (int)result;
         }
 
         /// <summary>

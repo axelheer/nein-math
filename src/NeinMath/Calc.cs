@@ -407,7 +407,7 @@
 
 #else
 
-        const int SquareThreshold = 2048 / 32;
+        const int SquareThreshold = 1024 / 32;
 
 #endif
 
@@ -701,7 +701,7 @@
             }
 
             // repair the cheated shift
-            remainder = Shift(left, rightLength, -1 * shifted, 0);
+            remainder = Shift(left, rightLength, -shifted, 0);
 
             return bits;
         }
