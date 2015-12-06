@@ -4,7 +4,7 @@
   },
 
   "dependencies": {
-    "NeinMath": "0.2.4",
+    "NeinMath": "0.2.5",
     "NeinMath.xunit": "1.0.0",
     "OpenCover": "4.6.166",
     "ReportGenerator": "2.3.5",
