@@ -14,7 +14,8 @@
   },
 
   "frameworks": {
-    "net4": { },
+    "net40": { },
+    "net45": { },
     "netcore45": {
       "dependencies": {
         "System.Globalization": "4.0.0",
@@ -22,7 +23,7 @@
         "System.Runtime.Extensions": "4.0.0"
       }
     },
-    "dotnet5.0": {
+    "dotnet5.1": {
       "dependencies": {
         "System.Globalization": "4.0.0",
         "System.Runtime": "4.0.0",
