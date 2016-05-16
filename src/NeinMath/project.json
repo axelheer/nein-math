@@ -2,15 +2,19 @@
   "version": "0.2.5",
   "description": "NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.",
   "authors": [ "Axel Heer" ],
-  "tags": [ "Math", "BigInteger" ],
-  "projectUrl": "http://github.com/axelheer/nein-math",
-  "licenseUrl": "http://opensource.org/licenses/mit",
   "copyright": "Copyright © 2011-2016 Axel Heer",
 
-  "releaseNotes": "Minor improvements and fixes.",
+  "buildOptions": {
+    "keyFile": "NeinMath.snk",
+    "xmlDoc": true
+  },
 
-  "compilationOptions": {
-    "keyFile": "NeinMath.snk"
+  "packOptions": {
+    "tags": [ "Math", "BigInteger" ],
+    "projectUrl": "http://github.com/axelheer/nein-math",
+    "licenseUrl": "http://opensource.org/licenses/mit",
+
+    "releaseNotes": "Minor improvements and fixes."
   },
 
   "frameworks": {
@@ -23,12 +27,13 @@
         "System.Runtime.Extensions": "4.0.0"
       }
     },
-    "dotnet5.1": {
+    "netstandard1.0": {
       "dependencies": {
         "System.Globalization": "4.0.0",
         "System.Runtime": "4.0.0",
         "System.Runtime.Extensions": "4.0.0"
-      }
+      },
+      "imports": "dotnet"
     }
   }
 }

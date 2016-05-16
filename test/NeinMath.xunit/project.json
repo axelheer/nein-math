@@ -2,27 +2,16 @@
   "version": "1.0.0",
 
   "dependencies": {
+    "NETStandard.Library": "1.5.0-rc2-*",
     "xunit.extensibility.core": "2.0.0"
   },
 
   "frameworks": {
-    "dnx46": {
-      "frameworkAssemblies": {
-        "System.Collections": "",
-        "System.Reflection": "",
-        "System.Reflection.Extensions": "",
-        "System.Runtime": "",
-        "System.Runtime.Extensions": ""
-      }
-    },
-    "dnxcore50": {
-      "dependencies": {
-        "System.Collections": "4.0.0",
-        "System.Reflection": "4.0.0",
-        "System.Reflection.Extensions": "4.0.0",
-        "System.Runtime": "4.0.0",
-        "System.Runtime.Extensions": "4.0.0"
-      }
+    "netstandard1.5": {
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
     }
   }
 }
