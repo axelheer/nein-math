@@ -9,7 +9,9 @@
     "NeinMath": "0.2.5",
     "NeinMath.xunit": "1.0.0",
     "xunit": "2.1.0",
-    "dotnet-test-xunit": "1.0.0-rc2-*"
+    "dotnet-test-xunit": "1.0.0-rc2-*",
+    "OpenCover": "4.6.519",
+    "ReportGenerator": "2.4.5"
   },
 
   "frameworks": {
