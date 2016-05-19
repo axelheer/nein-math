@@ -8,7 +8,9 @@
       "type": "platform",
       "version": "1.0.0-rc2-*"
     },
-    "NeinMath": "0.2.5"
+    "NeinMath": {
+      "target": "project"
+    }
   },
 
   "frameworks": {
