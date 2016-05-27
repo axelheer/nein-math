@@ -2,10 +2,7 @@
   "testRunner": "xunit",
 
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0-rc2-*"
-    },
+    "Microsoft.NETCore.Platforms": "1.0.1-rc2-*",
     "NeinMath": {
       "target": "project"
     },
@@ -19,11 +16,10 @@
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": [
-        "dnxcore50",
-        "portable-net45+win8"
-      ]
+    "net46": {
+      "frameworkAssemblies": {
+        "System.Numerics": ""
+      }
     }
   }
 }
