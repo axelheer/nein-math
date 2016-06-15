@@ -1,6 +1,9 @@
 ﻿NeinMath
 ========
 
+[![AppVeyor](https://img.shields.io/appveyor/ci/AxelHeer/nein-math.svg)](https://ci.appveyor.com/project/AxelHeer/nein-math)
+[![NuGet](https://img.shields.io/nuget/v/NeinMath.svg)](https://www.nuget.org/packages/NeinMath)
+
 *NeinMath* is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.
 
 To install *NeinMath*, run the following command in the [NuGet Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console).
