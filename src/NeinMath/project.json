@@ -14,7 +14,7 @@
     "projectUrl": "http://github.com/axelheer/nein-math",
     "licenseUrl": "http://opensource.org/licenses/mit",
 
-    "releaseNotes": "Updated for final .NET Standard version."
+    "releaseNotes": "Fixed some edge cases. Updated for final .NET Standard version."
   },
 
   "frameworks": {
