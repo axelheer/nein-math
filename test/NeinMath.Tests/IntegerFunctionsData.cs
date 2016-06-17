@@ -43,7 +43,7 @@ namespace NeinMath.Tests
         public TheoryData<Integer, Integer, Integer> Gcd()
         {
             var data = new TheoryData<Integer, Integer, Integer>();
-            foreach (var i in Items(BigIntegers(), BigIntegers()))
+            foreach (var i in Items(BigIntegers(), BigIntegers(x => x != 0)))
                 data.Add(ToInteger(i.Item1), ToInteger(i.Item2),
                     ToInteger(BigInteger.GreatestCommonDivisor(i.Item1, i.Item2)));
             return data;
@@ -52,7 +52,7 @@ namespace NeinMath.Tests
         public TheoryData<Integer, Integer, Integer> Lcm()
         {
             var data = new TheoryData<Integer, Integer, Integer>();
-            foreach (var i in Items(BigIntegers(), BigIntegers()))
+            foreach (var i in Items(BigIntegers(), BigIntegers(x => x != 0)))
                 data.Add(ToInteger(i.Item1), ToInteger(i.Item2),
                     ToInteger(BigInteger.Abs(i.Item1 * i.Item2)
                     / BigInteger.GreatestCommonDivisor(i.Item1, i.Item2)));
