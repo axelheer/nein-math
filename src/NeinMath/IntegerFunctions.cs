@@ -202,6 +202,9 @@ namespace NeinMath
             if (modulus < 1)
                 throw new ArgumentOutOfRangeException(nameof(modulus));
 
+            if (power == 0)
+                return modulus == 1 ? 0 : 1;
+
             var barrett = Barrett.Begin(modulus);
 
             var v = new Integer[256];

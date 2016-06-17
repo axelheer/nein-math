@@ -5,7 +5,7 @@ namespace NeinMath.Tests
 {
     public abstract class IntegerDataSource
     {
-        const int testCount = 100;
+        const int testCount = 256;
 
         // don't make it too random...
         readonly Random random = new Random(1138);
