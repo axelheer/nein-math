@@ -8,8 +8,6 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>c32024b5-3aba-45f2-be6b-c62c065fa4d3</ProjectGuid>
     <RootNamespace>NeinMath.Benchmark</RootNamespace>
-    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
-    <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
