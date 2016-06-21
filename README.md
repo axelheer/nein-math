@@ -2,9 +2,9 @@
 ========
 
 [![Latest package](https://img.shields.io/nuget/v/NeinMath.svg)](https://www.nuget.org/packages/NeinMath)
-[![Build status](https://ci.appveyor.com/api/projects/status/1r8ivqd77t8h7q74/branch/master?svg=true)](https://ci.appveyor.com/project/AxelHeer/nein-math/branch/master)
-[![Line coverage](https://ci.appveyor.com/api/projects/AxelHeer/nein-math/artifacts/TestResults/report/badge_linecoverage.svg?branch=master)](https://ci.appveyor.com/api/projects/AxelHeer/nein-math/artifacts/TestResults.zip?branch=master)
-[![Branch coverage](https://ci.appveyor.com/api/projects/AxelHeer/nein-math/artifacts/TestResults/report/badge_branchcoverage.svg?branch=master)](https://ci.appveyor.com/api/projects/AxelHeer/nein-math/artifacts/TestResults.zip?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/axelheer/nein-math?branch=master&svg=true)](https://ci.appveyor.com/project/AxelHeer/nein-math/branch/master)
+[![Line coverage](https://axelheer.blob.core.windows.net/github/nein-math/TestResults/report/badge_linecoverage.svg)](https://axelheer.blob.core.windows.net/github/nein-math/TestResults.zip)
+[![Branch coverage](https://axelheer.blob.core.windows.net/github/nein-math/TestResults/report/badge_branchcoverage.svg)](https://axelheer.blob.core.windows.net/github/nein-math/TestResults.zip)
 
 *NeinMath* is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.
 
