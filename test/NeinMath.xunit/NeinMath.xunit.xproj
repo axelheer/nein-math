@@ -7,7 +7,7 @@
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>1a1ab258-28de-40b3-9b21-8ac78e8dab19</ProjectGuid>
-    <RootNamespace>NeinMath.Tests</RootNamespace>
+    <RootNamespace>NeinMath.Xunit</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>

@@ -6,6 +6,7 @@ using Xunit.Sdk;
 namespace NeinMath.Xunit
 {
     [AttributeUsage(AttributeTargets.Method)]
+    [DataDiscoverer("NeinMath.Xunit.IntegerDataDiscoverer", "NeinMath.xunit")]
     public class IntegerDataAttribute : DataAttribute
     {
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
