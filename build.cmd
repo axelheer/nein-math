@@ -4,9 +4,9 @@ dotnet --info
 
 dotnet restore
 
-dotnet build src\*\project.json --configuration Debug
-dotnet build src\*\project.json --configuration Release
-dotnet build test\*\project.json --configuration Debug
-dotnet build test\*\project.json --configuration Release
+if not defined build_options call init.cmd
 
-dotnet pack src\NeinMath --configuration Release
+dotnet build **\*\project.json %build_options:Release=Debug%
+dotnet build **\*\project.json %build_options%
+
+dotnet pack src\NeinMath %build_options%

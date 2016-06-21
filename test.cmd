@@ -7,4 +7,4 @@ if not exist TestResults mkdir TestResults
 
 "%opencover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests --configuration Release -xml TestResults\NeinMath.result.xml" -output:TestResults\NeinMath.report.xml -register:user -filter:+[NeinMath]*
 
-"%reportgenerator%" -reports:TestResults\NeinMath.report.xml -targetdir:TestResults\report
+"%reportgenerator%" -reports:TestResults\NeinMath.report.xml -targetdir:TestResults\report -reporttypes:Badges;Html
