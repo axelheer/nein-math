@@ -65,7 +65,7 @@ Integer Gcd(Integer left, Integer right)
 
 *Note:* calling `left.Gcd(right)` is much faster, since the internal implementation is based on a more sophisticated algorithm.
 
-Fractions
+Rationals
 ---------
 
 Coming sometime... maybe... who knows?

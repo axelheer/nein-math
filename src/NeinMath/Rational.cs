@@ -5,13 +5,13 @@
 namespace NeinMath
 {
     /// <summary>
-    /// Represents an arbitrarily large signed fraction.
+    /// Represents an arbitrarily large signed rational.
     /// </summary>
-    public struct Fraction : IComparable,
+    public struct Rational : IComparable,
                              IComparable<int>,
-                             IComparable<Integer>, IComparable<Fraction>,
+                             IComparable<Integer>, IComparable<Rational>,
                              IEquatable<int>,
-                             IEquatable<Integer>, IEquatable<Fraction>
+                             IEquatable<Integer>, IEquatable<Rational>
     {
         private readonly uint[] numBits;
         private readonly int numLength;
