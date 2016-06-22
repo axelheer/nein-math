@@ -5,6 +5,6 @@ set reportgenerator=%UserProfile%\.nuget\packages\ReportGenerator\2.4.5\tools\Re
 
 if not exist TestResults mkdir TestResults
 
-"%opencover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests --configuration Release -xml TestResults\NeinMath.result.xml" -output:TestResults\NeinMath.report.xml -register:user -filter:+[NeinMath]*
+"%opencover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests -xml TestResults\NeinMath.result.xml" -output:TestResults\NeinMath.report.xml -register:user -filter:+[NeinMath]*
 
 "%reportgenerator%" -reports:TestResults\NeinMath.report.xml -targetdir:TestResults\report -reporttypes:Badges;Html
