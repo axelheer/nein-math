@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "xunit.extensibility.core": "2.2.0-beta2-build3300"
+    "xunit.extensibility.core": "2.2.0-beta4-build3444"
   },
 
   "frameworks": {
