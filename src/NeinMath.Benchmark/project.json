@@ -1,28 +1,28 @@
 ﻿{
+  "version": "1.0.2-*",
+  
   "buildOptions": {
     "emitEntryPoint": true
   },
 
   "dependencies": {
-    "NeinMath": {
-      "target": "project"
-    }
+    "NeinMath": "1.0.2-*"
   },
 
   "frameworks": {
     "net461": {
       "dependencies": {
-        "Microsoft.NETCore.Platforms": "1.1.0"
+        "Microsoft.NETCore.Platforms": "1.0.1"
       },
       "frameworkAssemblies": {
-        "System.Numerics": ""
+        "System.Numerics": "4.0.0.0"
       }
     },
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.1.0"
+          "version": "1.0.1"
         }
       }
     }
