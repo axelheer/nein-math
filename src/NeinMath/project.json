@@ -13,8 +13,14 @@
     "tags": [ "Math", "BigInteger" ],
     "projectUrl": "http://github.com/axelheer/nein-math",
     "licenseUrl": "http://opensource.org/licenses/mit",
+    "iconUrl": "http://home.heer.eu/media/axel.png",
 
-    "releaseNotes": "Fixed some edge cases. Updated for final .NET Standard version."
+    "repository": {
+      "type": "git",
+      "url": "http://github.com/axelheer/nein-math"
+    },
+
+    "releaseNotes": "Minor improvements."
   },
 
   "frameworks": {
