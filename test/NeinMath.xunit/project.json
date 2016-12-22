@@ -1,6 +1,10 @@
 ﻿{
   "version": "1.0.2-*",
 
+  "buildOptions": {
+    "debugType": "portable"
+  },
+
   "dependencies": {
     "xunit.extensibility.core": "2.2.0-beta4-build3444"
   },
