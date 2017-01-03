@@ -2,7 +2,7 @@
   "version": "1.0.2-*",
   "description": "NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.",
   "authors": [ "Axel Heer" ],
-  "copyright": "Copyright © 2011-2016 Axel Heer",
+  "copyright": "Copyright © 2011-2017 Axel Heer",
 
   "buildOptions": {
     "debugType": "full",
