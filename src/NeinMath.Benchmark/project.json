@@ -2,7 +2,7 @@
   "version": "1.0.2-*",
   
   "buildOptions": {
-    "debugType": "portable",
+    "debugType": "full",
     "emitEntryPoint": true
   },
 
@@ -13,17 +13,17 @@
   "frameworks": {
     "net461": {
       "dependencies": {
-        "Microsoft.NETCore.Platforms": "1.0.1"
+        "Microsoft.NETCore.Platforms": "1.1.0"
       },
       "frameworkAssemblies": {
-        "System.Numerics": "4.0.0.0"
+        "System.Numerics": ""
       }
     },
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       }
     }

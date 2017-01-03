@@ -3,7 +3,7 @@
   "testRunner": "xunit",
 
   "buildOptions": {
-    "debugType": "portable"
+    "debugType": "full"
   },
 
   "dependencies": {
@@ -15,23 +15,23 @@
 
   "tools": {
     "OpenCover": "4.6.519",
-    "ReportGenerator": "2.5.1"
+    "ReportGenerator": "2.5.2"
   },
 
   "frameworks": {
     "net461": {
       "dependencies": {
-        "Microsoft.NETCore.Platforms": "1.0.1"
+        "Microsoft.NETCore.Platforms": "1.1.0"
       },
       "frameworkAssemblies": {
-        "System.Numerics": "4.0.0.0"
+        "System.Numerics": ""
       }
     },
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.0.1"
+          "version": "1.1.0"
         }
       }
     }
