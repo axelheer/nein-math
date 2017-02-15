@@ -6,10 +6,10 @@
   },
 
   "dependencies": {
-    "xunit.extensibility.core": "2.2.0-beta4-build3444"
+    "xunit.extensibility.core": "2.2.0-rc2-build3523"
   },
 
   "frameworks": {
-    "netstandard1.0": { }
+    "netstandard1.1": { }
   }
 }
