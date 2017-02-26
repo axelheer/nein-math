@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\NeinMath.props" />
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <TargetFrameworks>net461;netcoreapp1.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NeinMath.xunit\NeinMath.xunit.csproj" />
+    <ProjectReference Include="..\..\src\NeinMath\NeinMath.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="OpenCover" Version="4.6.519" />
+    <DotNetCliToolReference Include="ReportGenerator" Version="2.5.2" />
+  </ItemGroup>
+
+</Project>
