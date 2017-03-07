@@ -9,7 +9,6 @@
 
   <PropertyGroup>
     <OutputType>exe</OutputType>
-    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
