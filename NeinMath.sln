@@ -1,19 +1,19 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7998B506-5DD7-40F6-A5AE-096F68B7B6B4}"
 EndProject
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "NeinMath", "src\NeinMath\NeinMath.csproj", "{5548BADA-9AB2-44E5-9166-5E64B94D8B14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeinMath", "src\NeinMath\NeinMath.csproj", "{5548BADA-9AB2-44E5-9166-5E64B94D8B14}"
 EndProject
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "NeinMath.Benchmark", "src\NeinMath.Benchmark\NeinMath.Benchmark.csproj", "{6F24E214-63F1-49AC-B60B-973BD792796C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeinMath.Benchmark", "src\NeinMath.Benchmark\NeinMath.Benchmark.csproj", "{6F24E214-63F1-49AC-B60B-973BD792796C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D402D0F5-46EC-47E7-B6E1-390CB779B6E1}"
 EndProject
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "NeinMath.Tests", "test\NeinMath.Tests\NeinMath.Tests.csproj", "{139DB787-FC75-464F-A3FC-14E9486300BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeinMath.Tests", "test\NeinMath.Tests\NeinMath.Tests.csproj", "{139DB787-FC75-464F-A3FC-14E9486300BF}"
 EndProject
-Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "NeinMath.xunit", "test\NeinMath.xunit\NeinMath.xunit.csproj", "{4C5FAD3B-A5E7-4EEA-A29D-C3986391FE7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeinMath.xunit", "test\NeinMath.xunit\NeinMath.xunit.csproj", "{4C5FAD3B-A5E7-4EEA-A29D-C3986391FE7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
