@@ -2,7 +2,8 @@
 ========
 
 [![Latest package](https://img.shields.io/nuget/v/NeinMath.svg)](https://www.nuget.org/packages/NeinMath)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/axelheer/nein-math?branch=master&svg=true)](https://ci.appveyor.com/project/axelheer/nein-math/branch/master)
+[![Travis status](https://travis-ci.org/axelheer/nein-math.svg?branch=master)](https://travis-ci.org/axelheer/nein-math)
+[![AppVeyor status](https://ci.appveyor.com/api/projects/status/github/axelheer/nein-math?branch=master&svg=true)](https://ci.appveyor.com/project/axelheer/nein-math/branch/master)
 [![Line coverage](https://axelheer.blob.core.windows.net/github/nein-math/report/badge_linecoverage.svg)](https://axelheer.blob.core.windows.net/github/nein-math/report/index.htm)
 [![Branch coverage](https://axelheer.blob.core.windows.net/github/nein-math/report/badge_branchcoverage.svg)](https://axelheer.blob.core.windows.net/github/nein-math/report/index.htm)
 
