@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <DebugType>full</DebugType>
-    <VersionPrefix>1.1.0</VersionPrefix>
+    <VersionPrefix>1.1.1</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,7 +21,7 @@
     <PackageIconUrl>https://secure.gravatar.com/avatar/f99247b7f16efbe7c4e896da2415a789?s=128</PackageIconUrl>
     <PackageLicenseUrl>https://opensource.org/licenses/mit</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
-    <PackageReleaseNotes>Minor improvements.</PackageReleaseNotes>
+    <PackageReleaseNotes>.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
