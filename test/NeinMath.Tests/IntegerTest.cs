@@ -222,7 +222,7 @@ namespace NeinMath.Tests
 
         [Theory]
         [IntegerData]
-        public void Equals(Integer left, Integer right, bool expected)
+        public void EqualsBig(Integer left, Integer right, bool expected)
         {
             using (Immutability.Guard(left, right))
             {

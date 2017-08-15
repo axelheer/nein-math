@@ -125,7 +125,7 @@ namespace NeinMath.Tests
             return data;
         }
 
-        public TheoryData<Integer, Integer, bool> Equals()
+        public TheoryData<Integer, Integer, bool> EqualsBig()
         {
             var data = new TheoryData<Integer, Integer, bool>();
             foreach (var i in Items(BigIntegers(), BigIntegers()))
