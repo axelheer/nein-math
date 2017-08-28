@@ -24,6 +24,9 @@ namespace NeinMath
             this.sign = sign;
         }
 
+#pragma warning disable CA1707 // Identifiers should not contain underscores
+#pragma warning disable CA2225 // Operator overloads have named alternates
+
         /// <summary>
         /// Defines an implicit conversion of a signed 32-bit integer to an
         /// Integer.
@@ -105,6 +108,9 @@ namespace NeinMath
                 num = ~num + 1;
             return (long)num;
         }
+
+#pragma warning restore CA1707 // Identifiers should not contain underscores
+#pragma warning restore CA2225 // Operator overloads have named alternates
 
         /// <summary>
         /// Performs a bitwise AND operation on an Integer and a signed 32-bit
