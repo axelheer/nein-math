@@ -15,8 +15,4 @@
     <ProjectReference Include="..\NeinMath\NeinMath.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-
 </Project>
