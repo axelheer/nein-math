@@ -20,8 +20,7 @@ test_script:
   - cmd: dotnet clean --configuration Release
   - cmd: dotnet build %build_options% /p:DebugType=Full
   - cmd: cd test\NeinMath.Tests
-  - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"xunit -configuration Release -framework net452 -nobuild -xml ..\..\TestResults\NeinMath.netframework45.xml" -searchdirs:bin\Release\net452 -output:..\..\TestResults\NeinMath.netframework45.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
-  - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"xunit -configuration Release -framework netcoreapp1.1 -nobuild -xml ..\..\TestResults\NeinMath.netcore1.xml" -searchdirs:bin\Release\netcoreapp1.1 -output:..\..\TestResults\NeinMath.netcore1.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
+  - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"xunit -configuration Release -framework net461 -nobuild -xml ..\..\TestResults\NeinMath.netframework45.xml" -searchdirs:bin\Release\net461 -output:..\..\TestResults\NeinMath.netframework45.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
   - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"xunit -configuration Release -framework netcoreapp2.0 -nobuild -xml ..\..\TestResults\NeinMath.netcore2.xml" -searchdirs:bin\Release\netcoreapp2.0 -output:..\..\TestResults\NeinMath.netcore2.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
   - cmd: cd ..\..
   - cmd: '"%ReportGenerator%" -reports:TestResults\*.report.xml -targetdir:TestResults\report -reporttypes:Badges;Html'
