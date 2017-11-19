@@ -19,10 +19,10 @@ before_test:
 test_script:
   - cmd: dotnet clean --configuration Release
   - cmd: dotnet build %build_options% /p:DebugType=Full
-  - cmd: cd test\NeinMath.Tests
-  - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"xunit -configuration Release -framework net461 -nobuild -xml ..\..\TestResults\NeinMath.netframework46.xml" -searchdirs:bin\Release\net461 -output:..\..\TestResults\NeinMath.netframework46.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
-  - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"xunit -configuration Release -framework netcoreapp2.0 -nobuild -xml ..\..\TestResults\NeinMath.netcore2.xml" -searchdirs:bin\Release\netcoreapp2.0 -output:..\..\TestResults\NeinMath.netcore2.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
-  - cmd: cd ..\..
+# - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests\NeinMath.Tests.csproj --configuration Release --framework net452 --logger trx;LogFileName=NeinMath.netframework45.trx --no-build --results-directory ..\..\TestResults" -searchdirs:test\NeinMath.Tests\bin\Release\net452 -output:TestResults\NeinMath.netframework45.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
+  - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests\NeinMath.Tests.csproj --configuration Release --framework net461 --logger trx;LogFileName=NeinMath.netframework46.trx --no-build --results-directory ..\..\TestResults" -searchdirs:test\NeinMath.Tests\bin\Release\net461 -output:TestResults\NeinMath.netframework46.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
+# - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests\NeinMath.Tests.csproj --configuration Release --framework netcoreapp1.1 --logger trx;LogFileName=NeinMath.netcore1.trx --no-build --results-directory ..\..\TestResults" -searchdirs:test\NeinMath.Tests\bin\Release\netcoreapp1.1 -output:TestResults\NeinMath.netcore1.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
+# - cmd: '"%OpenCover%" -target:dotnet.exe -targetargs:"test test\NeinMath.Tests\NeinMath.Tests.csproj --configuration Release --framework netcoreapp2.0 --logger trx;LogFileName=NeinMath.netcore2.trx --no-build --results-directory ..\..\TestResults" -searchdirs:test\NeinMath.Tests\bin\Release\netcoreapp2.0 -output:TestResults\NeinMath.netcore2.report.xml -register:user -filter:+[NeinMath]* -returntargetcode -oldstyle'
   - cmd: '"%ReportGenerator%" -reports:TestResults\*.report.xml -targetdir:TestResults\report -reporttypes:Badges;Html'
 
 artifacts:
