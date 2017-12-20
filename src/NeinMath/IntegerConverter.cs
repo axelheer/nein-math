@@ -72,7 +72,7 @@ namespace NeinMath
             var trivialSign = (digits[0][0] == '0' && digits[0][1] < '8')
                 || (digits[0][0] == 'F' && digits[0][1] >= '8');
             if (trivialSign)
-                digits[0] = digits[0][1].ToString();
+                digits[0] = digits[0].Substring(1);
 
             return string.Concat(digits);
         }
