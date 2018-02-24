@@ -1,4 +1,4 @@
-version: 1.1.2-ci.{build}
+version: 1.2.0-ci.{build}
 
 image: Visual Studio 2017
 
@@ -15,10 +15,8 @@ before_test:
   - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:Clean;Build /p:Configuration=Release;DebugType=Full
 
 test_script:
-# - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:OpenCover /p:Configuration=Release;TargetFramework=net452
   - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:OpenCover /p:Configuration=Release;TargetFramework=net461
-# - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:OpenCover /p:Configuration=Release;TargetFramework=netcoreapp1.1
-# - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:OpenCover /p:Configuration=Release;TargetFramework=netcoreapp2.0
+  - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:OpenCover /p:Configuration=Release;TargetFramework=netcoreapp2.0
 
 after_test:
   - cmd: dotnet msbuild test\NeinMath.Tests\NeinMath.Tests.csproj /t:ReportGenerator
