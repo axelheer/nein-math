@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Xunit.Sdk;
 
-namespace NeinMath
+namespace NeinMath.Tests
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class IntegerDataAttribute : DataAttribute
