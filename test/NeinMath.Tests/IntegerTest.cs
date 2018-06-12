@@ -1,5 +1,4 @@
-﻿using NeinMath.Xunit;
-using System;
+﻿using System;
 using Xunit;
 
 namespace NeinMath.Tests

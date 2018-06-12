@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using Xunit.Sdk;
 
-namespace NeinMath.Xunit
+namespace NeinMath
 {
     [AttributeUsage(AttributeTargets.Method)]
-    [DataDiscoverer("NeinMath.Xunit.IntegerDataDiscoverer", "NeinMath.xunit")]
     public class IntegerDataAttribute : DataAttribute
     {
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NeinMath\NeinMath.csproj" />
-    <ProjectReference Include="..\NeinMath.xunit\NeinMath.xunit.csproj" />
   </ItemGroup>
 
   <ItemGroup>
