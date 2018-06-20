@@ -6,5 +6,7 @@
         <Rule Id="CA1716" Action="None" />
         <!-- Identifiers should not contain type names -->
         <Rule Id="CA1720" Action="None" />
+        <!-- Avoid zero-length array allocations -->
+        <Rule Id="CA1825" Action="None" />
     </Rules>
 </RuleSet>

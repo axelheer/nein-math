@@ -25,7 +25,7 @@
     <PackageIconUrl>https://secure.gravatar.com/avatar/f99247b7f16efbe7c4e896da2415a789?s=128</PackageIconUrl>
     <PackageLicenseUrl>https://opensource.org/licenses/mit</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
-    <PackageReleaseNotes>Minor improvements.</PackageReleaseNotes>
+    <PackageReleaseNotes>Moved to .NET Standard 2.0.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
