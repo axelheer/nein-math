@@ -4,7 +4,7 @@
 [![Latest package](https://img.shields.io/nuget/v/NeinMath.svg)](https://www.nuget.org/packages/NeinMath)
 [![Download tracker](https://img.shields.io/nuget/dt/NeinMath.svg)](https://www.nuget.org/packages/NeinMath)
 [![AppVeyor status](https://ci.appveyor.com/api/projects/status/github/axelheer/nein-math?branch=master&svg=true)](https://ci.appveyor.com/project/axelheer/nein-math/branch/master)
-[![Line coverage](https://axelheer.blob.core.windows.net/github/nein-math/report/badge_linecoverage.svg)](https://axelheer.blob.core.windows.net/github/nein-math/report/index.htm)
+[![Code coverage](https://codecov.io/gh/axelheer/nein-math/branch/master/graph/badge.svg)](https://codecov.io/gh/axelheer/nein-math)
 
 *NeinMath* is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.
 
