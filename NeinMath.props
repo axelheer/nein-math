@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <VersionPrefix>1.2.1</VersionPrefix>
+    <VersionPrefix>1.3.0</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -26,7 +26,7 @@
     <PackageIconUrl>https://www.heer.eu/media/axel.png</PackageIconUrl>
     <PackageLicenseUrl>https://opensource.org/licenses/mit</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
-    <PackageReleaseNotes>.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added .NET Framework 4.0 support.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
