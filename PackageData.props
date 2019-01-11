@@ -1,0 +1,17 @@
+<Project>
+
+  <PropertyGroup>
+    <Authors>Axel Heer</Authors>
+    <Copyright>Copyright © 2011-2019 Axel Heer</Copyright>
+    <Description>NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageIconUrl>https://www.heer.eu/media/axel.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>Added SourceLink.</PackageReleaseNotes>
+    <PackageTags>Math;BigInteger</PackageTags>
+  </PropertyGroup>
+
+</Project>

@@ -13,30 +13,17 @@
     <FrameworkPathOverrideBase Condition=" Exists('/usr/lib/mono') ">/usr/lib/mono</FrameworkPathOverrideBase>
     <FrameworkPathOverrideBase Condition=" Exists('/usr/local/lib/mono') ">/usr/local/lib/mono</FrameworkPathOverrideBase>
     <FrameworkPathOverrideBase Condition=" Exists('/Library/Frameworks/Mono.framework/Versions/Current/lib/mono') ">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono</FrameworkPathOverrideBase>
-    <FrameworkPathOverride Condition=" '$(FrameworkPathOverrideBase)' != '' and '$(TargetFramework)' == 'net40' ">$(FrameworkPathOverrideBase)/4.0-api</FrameworkPathOverride>
-    <FrameworkPathOverride Condition=" '$(FrameworkPathOverrideBase)' != '' and '$(TargetFramework)' == 'net45' ">$(FrameworkPathOverrideBase)/4.5-api</FrameworkPathOverride>
-    <FrameworkPathOverride Condition=" '$(FrameworkPathOverrideBase)' != '' and '$(TargetFramework)' == 'net472' ">$(FrameworkPathOverrideBase)/4.7.2-api</FrameworkPathOverride>
-    <AssemblySearchPaths Condition=" '$(FrameworkPathOverride)' != '' ">$(FrameworkPathOverride)/Facades;$(AssemblySearchPaths)</AssemblySearchPaths>
-    <EnableFrameworkPathOverride Condition=" '$(FrameworkPathOverride)' != '' ">true</EnableFrameworkPathOverride>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <Authors>Axel Heer</Authors>
-    <Copyright>Copyright © 2011-2019 Axel Heer</Copyright>
-    <Description>NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.</Description>
+  <PropertyGroup Condition=" '$(FrameworkPathOverrideBase)' != '' ">
+    <FrameworkPathOverride Condition=" '$(TargetFramework)' == 'net40' ">$(FrameworkPathOverrideBase)/4.0-api</FrameworkPathOverride>
+    <FrameworkPathOverride Condition=" '$(TargetFramework)' == 'net45' ">$(FrameworkPathOverrideBase)/4.5-api</FrameworkPathOverride>
+    <FrameworkPathOverride Condition=" '$(TargetFramework)' == 'net472' ">$(FrameworkPathOverrideBase)/4.7.2-api</FrameworkPathOverride>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PackageIconUrl>https://www.heer.eu/media/axel.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>.</PackageReleaseNotes>
-    <PackageTags>Math;BigInteger</PackageTags>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/axelheer/nein-math</RepositoryUrl>
+  <PropertyGroup Condition=" '$(FrameworkPathOverride)' != '' ">
+    <AssemblySearchPaths>$(FrameworkPathOverride)/Facades;$(AssemblySearchPaths)</AssemblySearchPaths>
+    <EnableFrameworkPathOverride>true</EnableFrameworkPathOverride>
   </PropertyGroup>
 
 </Project>
