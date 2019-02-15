@@ -10,7 +10,7 @@
     <PackageIconUrl>https://www.heer.eu/media/axel.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Added SourceLink.</PackageReleaseNotes>
+    <PackageReleaseNotes>.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
