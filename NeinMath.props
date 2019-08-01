@@ -10,21 +10,4 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" $(TargetFramework.StartsWith('net4')) and '$(OS)' == 'Unix' ">
-    <FrameworkPathOverrideBase Condition=" Exists('/usr/lib/mono') ">/usr/lib/mono</FrameworkPathOverrideBase>
-    <FrameworkPathOverrideBase Condition=" Exists('/usr/local/lib/mono') ">/usr/local/lib/mono</FrameworkPathOverrideBase>
-    <FrameworkPathOverrideBase Condition=" Exists('/Library/Frameworks/Mono.framework/Versions/Current/lib/mono') ">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono</FrameworkPathOverrideBase>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(FrameworkPathOverrideBase)' != '' ">
-    <FrameworkPathOverride Condition=" '$(TargetFramework)' == 'net40' ">$(FrameworkPathOverrideBase)/4.0-api</FrameworkPathOverride>
-    <FrameworkPathOverride Condition=" '$(TargetFramework)' == 'net45' ">$(FrameworkPathOverrideBase)/4.5-api</FrameworkPathOverride>
-    <FrameworkPathOverride Condition=" '$(TargetFramework)' == 'net472' ">$(FrameworkPathOverrideBase)/4.7.2-api</FrameworkPathOverride>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(FrameworkPathOverride)' != '' ">
-    <AssemblySearchPaths>$(FrameworkPathOverride)/Facades;$(AssemblySearchPaths)</AssemblySearchPaths>
-    <EnableFrameworkPathOverride>true</EnableFrameworkPathOverride>
-  </PropertyGroup>
-
 </Project>
