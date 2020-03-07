@@ -5,15 +5,12 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A5D5AC9-C399-46D5-BFD6-75659E7813B9}"
 	ProjectSection(SolutionItems) = preProject
-		appveyor.yml = appveyor.yml
+		BuildInfo.props = BuildInfo.props
 		CodeAnalysis.props = CodeAnalysis.props
 		CodeAnalysis.ruleset = CodeAnalysis.ruleset
 		CodeAnalysis.xml = CodeAnalysis.xml
-		LICENSE = LICENSE
-		NeinMath.props = NeinMath.props
-		NeinMath.snk = NeinMath.snk
+		CodeCoverage.runsettings = CodeCoverage.runsettings
 		PackageData.props = PackageData.props
-		README.md = README.md
 		SourceLink.props = SourceLink.props
 	EndProjectSection
 EndProject
@@ -21,9 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7998B506-5DD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeinMath", "src\NeinMath\NeinMath.csproj", "{5548BADA-9AB2-44E5-9166-5E64B94D8B14}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeinMath.Benchmark", "src\NeinMath.Benchmark\NeinMath.Benchmark.csproj", "{6F24E214-63F1-49AC-B60B-973BD792796C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D402D0F5-46EC-47E7-B6E1-390CB779B6E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeinMath.Benchmark", "test\NeinMath.Benchmark\NeinMath.Benchmark.csproj", "{6F24E214-63F1-49AC-B60B-973BD792796C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeinMath.Tests", "test\NeinMath.Tests\NeinMath.Tests.csproj", "{139DB787-FC75-464F-A3FC-14E9486300BF}"
 EndProject
@@ -51,7 +48,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5548BADA-9AB2-44E5-9166-5E64B94D8B14} = {7998B506-5DD7-40F6-A5AE-096F68B7B6B4}
-		{6F24E214-63F1-49AC-B60B-973BD792796C} = {7998B506-5DD7-40F6-A5AE-096F68B7B6B4}
+		{6F24E214-63F1-49AC-B60B-973BD792796C} = {D402D0F5-46EC-47E7-B6E1-390CB779B6E1}
 		{139DB787-FC75-464F-A3FC-14E9486300BF} = {D402D0F5-46EC-47E7-B6E1-390CB779B6E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

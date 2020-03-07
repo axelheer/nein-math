@@ -1,18 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\NeinMath.props" />
-
   <PropertyGroup>
-    <IsPackable>false</IsPackable>
     <TargetFrameworks>netcoreapp3.1;net48</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NeinMath\NeinMath.csproj" />
+  </ItemGroup>
 
   <PropertyGroup>
     <OutputType>exe</OutputType>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\NeinMath\NeinMath.csproj" />
-  </ItemGroup>
 
 </Project>
