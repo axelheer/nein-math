@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Numerics;
 
+#pragma warning disable CA1062
+#pragma warning disable CA1303
+#pragma warning disable CA1308
+
 namespace NeinMath.Benchmark
 {
     public static class Program

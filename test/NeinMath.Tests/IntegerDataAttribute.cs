@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using Xunit.Sdk;
 
+#pragma warning disable CA1062
+#pragma warning disable CA1307
+
 namespace NeinMath.Tests
 {
     [AttributeUsage(AttributeTargets.Method)]

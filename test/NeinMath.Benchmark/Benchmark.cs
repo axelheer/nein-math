@@ -2,6 +2,11 @@
 using System.Diagnostics;
 using System.Numerics;
 
+#pragma warning disable CA1303
+#pragma warning disable CA1715
+#pragma warning disable CA1724
+#pragma warning disable CA2211
+
 namespace NeinMath.Benchmark
 {
     public static class Benchmark

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Numerics;
 
+#pragma warning disable CA1062
+#pragma warning disable CA1822
+#pragma warning disable CA1715
+
 namespace NeinMath.Tests
 {
     public abstract class IntegerDataSource

@@ -1,6 +1,8 @@
 ﻿using System.Numerics;
 using Xunit;
 
+#pragma warning disable CA1305
+
 namespace NeinMath.Tests
 {
     public class IntegerData : IntegerDataSource
