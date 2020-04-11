@@ -8,6 +8,8 @@
 # Build
 bin/
 obj/
+pkg/
 
 # Test
+TestResults/
 test-results/
