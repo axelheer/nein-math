@@ -1,6 +1,8 @@
 ﻿using System;
 using Xunit;
 
+#pragma warning disable CA1508
+
 namespace NeinMath.Tests
 {
     public static class Immutability

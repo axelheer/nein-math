@@ -9,7 +9,7 @@ using Xunit.Sdk;
 namespace NeinMath.Tests
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class IntegerDataAttribute : DataAttribute
+    public sealed class IntegerDataAttribute : DataAttribute
     {
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
         {

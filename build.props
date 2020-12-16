@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <NoWarn>$(NoWarn);CA1716;CA1720;CA1825;NU5105</NoWarn>
+    <NoWarn>$(NoWarn);CA1014;CA1716;CA1720;CA1825;CA5394;NU5105</NoWarn>
   </PropertyGroup>
 
 </Project>
