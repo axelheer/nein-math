@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1;net48;net46</TargetFrameworks>
+    <IsPackable>false</IsPackable>
+    <OutputType>exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NeinMath\NeinMath.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <OutputType>exe</OutputType>
-  </PropertyGroup>
 
 </Project>

@@ -1,9 +1,12 @@
 <Project>
 
   <PropertyGroup>
-    <IncludeSymbols>true</IncludeSymbols>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(GITHUB_ACTIONS)' == 'true' ">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +25,9 @@
 
   <PropertyGroup>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/axelheer/nein-math</PackageProjectUrl>
+    <PackageProjectUrl>https://nein.tech/nein-math</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added explicit support for .NET 6.0.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
