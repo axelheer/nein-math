@@ -27,7 +27,7 @@
     <PackageIcon>icon.jpg</PackageIcon>
     <PackageProjectUrl>https://nein.tech/nein-math</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Added explicit support for .NET 6.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added explicit support for .NET 7.0.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
