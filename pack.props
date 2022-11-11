@@ -20,11 +20,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)icon.jpg" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>icon.jpg</PackageIcon>
     <PackageProjectUrl>https://nein.tech/nein-math</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>Added explicit support for .NET 6.0.</PackageReleaseNotes>
