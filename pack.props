@@ -15,19 +15,21 @@
 
   <PropertyGroup>
     <Authors>Axel Heer</Authors>
-    <Copyright>Copyright © 2011-2022 Axel Heer</Copyright>
+    <Copyright>Copyright © 2011-2023 Axel Heer</Copyright>
     <Description>NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)icon.jpg" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup>
     <PackageIcon>icon.jpg</PackageIcon>
-    <PackageProjectUrl>https://nein.tech/nein-math</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Added explicit support for .NET 7.0.</PackageReleaseNotes>
+    <PackageProjectUrl>http://nein.tech/nein-math</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Added current README.md to package contents.</PackageReleaseNotes>
     <PackageTags>Math;BigInteger</PackageTags>
   </PropertyGroup>
 
