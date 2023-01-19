@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Numerics;
 
 #pragma warning disable CA1062

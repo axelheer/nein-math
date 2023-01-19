@@ -1,4 +1,4 @@
-﻿namespace NeinMath
+namespace NeinMath
 {
     /// <remarks>
     /// Helper methods to keep all the bits in rein.

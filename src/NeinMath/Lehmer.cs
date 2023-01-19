@@ -1,4 +1,4 @@
-﻿namespace NeinMath
+namespace NeinMath
 {
     static class Lehmer
     {

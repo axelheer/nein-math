@@ -1,4 +1,4 @@
-﻿namespace NeinMath
+namespace NeinMath
 {
     /// <remarks>
     /// Integer arrays may be null or bigger than necessary, appropriate length
@@ -635,75 +635,75 @@
                                     uint[] right, int rightLength,
                                     out uint[] remainder)
         {
-           var bits = new uint[leftLength - rightLength + 1];
+            var bits = new uint[leftLength - rightLength + 1];
 
-           // get more bits into the highest bit block
-           var shifted = Bits.LeadingZeros(right[rightLength - 1]);
-           left = Shift(left, leftLength, shifted, 0);
-           right = Shift(right, rightLength, shifted, 0);
+            // get more bits into the highest bit block
+            var shifted = Bits.LeadingZeros(right[rightLength - 1]);
+            left = Shift(left, leftLength, shifted, 0);
+            right = Shift(right, rightLength, shifted, 0);
 
-           // measure again (after shift...)
-           leftLength = left[left.Length - 1] == 0
-               ? left.Length - 1 : left.Length;
+            // measure again (after shift...)
+            leftLength = left[left.Length - 1] == 0
+                ? left.Length - 1 : left.Length;
 
-           // these values are useful
-           var divHi = right[rightLength - 1];
-           var divLo = rightLength > 1 ? right[rightLength - 2] : 0;
-           var guess = new uint[rightLength + 1];
-           var guessLength = 0;
-           var delta = 0;
+            // these values are useful
+            var divHi = right[rightLength - 1];
+            var divLo = rightLength > 1 ? right[rightLength - 2] : 0;
+            var guess = new uint[rightLength + 1];
+            var guessLength = 0;
+            var delta = 0;
 
-           // sub the divisor
-           do
-           {
-               delta = Bits.Compare(left, leftLength,
-                   right, rightLength, leftLength - rightLength);
-               if (delta >= 0)
-               {
-                   ++bits[leftLength - rightLength];
-                   SubtractSelf(left, leftLength,
-                       right, rightLength, leftLength - rightLength);
-               }
-           }
-           while (delta > 0);
+            // sub the divisor
+            do
+            {
+                delta = Bits.Compare(left, leftLength,
+                    right, rightLength, leftLength - rightLength);
+                if (delta >= 0)
+                {
+                    ++bits[leftLength - rightLength];
+                    SubtractSelf(left, leftLength,
+                        right, rightLength, leftLength - rightLength);
+                }
+            }
+            while (delta > 0);
 
-           // divides the rest of the bits
-           for (var i = leftLength - 1; i >= rightLength; i--)
-           {
-               // first guess for the current bit of the quotient
-               var leftHi = (left[i - 1] | ((ulong)left[i] << 32));
-               var digits = leftHi / divHi;
-               if (digits > 0xFFFFFFFF)
-                   digits = 0xFFFFFFFF;
+            // divides the rest of the bits
+            for (var i = leftLength - 1; i >= rightLength; i--)
+            {
+                // first guess for the current bit of the quotient
+                var leftHi = (left[i - 1] | ((ulong)left[i] << 32));
+                var digits = leftHi / divHi;
+                if (digits > 0xFFFFFFFF)
+                    digits = 0xFFFFFFFF;
 
-               // the guess may be a little bit to big
-               var check = divHi * digits + ((divLo * digits) >> 32);
-               if (check > leftHi)
-                   --digits;
+                // the guess may be a little bit to big
+                var check = divHi * digits + ((divLo * digits) >> 32);
+                if (check > leftHi)
+                    --digits;
 
-               // the guess may be still a little bit to big
-               do
-               {
-                   MultiplyDivisor(right, rightLength, digits, guess);
-                   guessLength = guess[guess.Length - 1] == 0
-                       ? guess.Length - 1 : guess.Length;
-                   delta = Bits.Compare(left, left[i] != 0 ? i + 1 : i,
-                       guess, guessLength, i - rightLength);
-                   if (delta < 0)
-                       --digits;
-               }
-               while (delta < 0);
+                // the guess may be still a little bit to big
+                do
+                {
+                    MultiplyDivisor(right, rightLength, digits, guess);
+                    guessLength = guess[guess.Length - 1] == 0
+                        ? guess.Length - 1 : guess.Length;
+                    delta = Bits.Compare(left, left[i] != 0 ? i + 1 : i,
+                        guess, guessLength, i - rightLength);
+                    if (delta < 0)
+                        --digits;
+                }
+                while (delta < 0);
 
-               // we have the bit!
-               SubtractSelf(left, i + 1,
-                   guess, guessLength, i - rightLength);
-               bits[i - rightLength] = (uint)digits;
-           }
+                // we have the bit!
+                SubtractSelf(left, i + 1,
+                    guess, guessLength, i - rightLength);
+                bits[i - rightLength] = (uint)digits;
+            }
 
-           // repair the cheated shift
-           remainder = Shift(left, rightLength, -shifted, 0);
+            // repair the cheated shift
+            remainder = Shift(left, rightLength, -shifted, 0);
 
-           return bits;
+            return bits;
         }
 
         static void MultiplyDivisor(uint[] left, int leftLength,

@@ -1,4 +1,4 @@
-﻿NeinMath
+NeinMath
 ========
 
 [![Latest package](https://img.shields.io/nuget/v/NeinMath.svg)](https://www.nuget.org/packages/NeinMath)

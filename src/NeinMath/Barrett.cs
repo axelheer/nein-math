@@ -1,4 +1,4 @@
-﻿namespace NeinMath
+namespace NeinMath
 {
     sealed class Barrett
     {

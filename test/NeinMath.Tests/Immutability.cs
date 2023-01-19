@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 
 #pragma warning disable CA1508

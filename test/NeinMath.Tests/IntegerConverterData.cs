@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 
 #pragma warning disable CA1305
 
