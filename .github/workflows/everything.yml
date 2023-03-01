@@ -48,7 +48,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: packages
-        path: ${{ runner.temp }}/pkg
+        path: ${{ runner.temp }}\pkg
     if: github.event_name == 'push'
   prerelease:
     needs: package
