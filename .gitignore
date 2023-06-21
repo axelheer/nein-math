@@ -2,7 +2,6 @@
 *.vs
 *.suo
 *.user
-*.vscode
 .DS_Store
 
 # Build
@@ -11,5 +10,4 @@ obj/
 pkg/
 
 # Test
-TestResults/
 test-results/
