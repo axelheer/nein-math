@@ -26,6 +26,7 @@ jobs:
       uses: codecov/codecov-action@v4
       with:
         file: test-results/*/coverage.opencover.xml
+        token: ${{ secrets.CODECOV_TOKEN }}
   package:
     needs: test
     runs-on: windows-latest
