@@ -1,6 +1,7 @@
 <Project>
 
   <PropertyGroup>
+    <AnalysisMode>All</AnalysisMode>
     <VersionPrefix>1.5.1</VersionPrefix>
   </PropertyGroup>
 
@@ -9,18 +10,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AnalysisLevel>latest</AnalysisLevel>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)nein-math.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
   <PropertyGroup>
-    <NoWarn>$(NoWarn);CA1014;CA1716;CA1720;CA1825;CA5394;NU5105</NoWarn>
+    <NoWarn>$(NoWarn);CA1014;CA1515;CA1716;CA1720;CA1825;CA5394;NU5105</NoWarn>
   </PropertyGroup>
 
 </Project>
