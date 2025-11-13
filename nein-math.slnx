@@ -1,0 +1,20 @@
+<Solution>
+
+  <Folder Name="/.solution/">
+    <File Path=".editorconfig" />
+    <File Path="build.props" />
+    <File Path="pack.props" />
+  </Folder>
+
+  <Folder Name="/src/">
+    <File Path="src/Directory.Build.props" />
+    <Project Path="src/NeinMath/NeinMath.csproj" />
+  </Folder>
+
+  <Folder Name="/test/">
+    <File Path="test/Directory.Build.props" />
+    <Project Path="test/NeinMath.Benchmark/NeinMath.Benchmark.csproj" />
+    <Project Path="test/NeinMath.Tests/NeinMath.Tests.csproj" />
+  </Folder>
+
+</Solution>
