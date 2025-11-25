@@ -71,6 +71,6 @@ Rationals
 
 Coming sometime... maybe... who knows?
 
-[0]: http://axel.heer.eu/2011/02/05/big-integer-arithmetik/
-[1]: http://msdn.microsoft.com/library/system.numerics.biginteger
-[2]: http://github.com/dotnet/corefx/issues/1307
+[0]: https://repositum.tuwien.at/handle/20.500.12708/12254
+[1]: https://learn.microsoft.com/dotnet/api/system.numerics.biginteger?view=netframework-4.8
+[2]: https://github.com/dotnet/runtime/issues/14407
