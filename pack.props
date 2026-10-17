@@ -10,12 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.111" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.113" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>
     <Authors>Axel Heer</Authors>
-    <Copyright>Copyright © 2011-2025 Axel Heer</Copyright>
+    <Copyright>Copyright © 2011-2026 Axel Heer</Copyright>
     <Description>NeinMath is playing around with arbitrary precision integers, written in pure managed code, not using any unsafe stuff, and a bit faster than the build-in .NET type for integers with a few thousand bits.</Description>
   </PropertyGroup>
 
